@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "83373430235",
+    "project_id": "byutinagae-9493b",
+    "storage_bucket": "byutinagae-9493b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83373430235:android:6c355a16f3174b871403fe",
+        "android_client_info": {
+          "package_name": "com.example.byutinagae"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83373430235-jp8jkpjf9qtkb6lcdr2fmmmjf8p9sr82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE7oDxq5Dg6TDxisP1E-Lrb9PAfeaIlTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83373430235-jp8jkpjf9qtkb6lcdr2fmmmjf8p9sr82.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "83373430235-7u9bfcjh2u04ipce00078if7e98afoh2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.petskin.petskin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
