@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/features/feedback/presentation/screen/home_product_add_request_page.dart';
-import 'package:byutinagae/src/features/common/presentation/screen/home_page/home_page.dart';
-import 'package:byutinagae/src/features/product/presentation/screen/home_search_page.dart';
+import 'package:byutinagae/src/features/home/presentation/screen/home_page.dart';
+import 'package:byutinagae/src/features/search/presentation/screen/home_search_page.dart';
 import 'package:byutinagae/src/features/setting/presentation/screen/setting_page/setting_page.dart';
 
 class TabbarPage extends StatefulWidget {

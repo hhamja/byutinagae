@@ -4,7 +4,7 @@ import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/config/constant/app_name.dart';
 import 'package:byutinagae/src/features/common/presentation/widget/text_button/custom_fill_text_button.dart';
 import 'package:byutinagae/src/features/common/presentation/widget/text_form_field/custom_text_form_filed.dart';
-import 'package:byutinagae/src/features/feedback/data/feedback_repository.dart';
+import 'package:byutinagae/src/features/feedback/data/feedback_repository_impl.dart';
 
 class ProductAddRequestBody extends StatefulWidget {
   const ProductAddRequestBody({super.key});

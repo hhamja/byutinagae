@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:83373430235:android:6c355a16f3174b871403fe",
+        "mobilesdk_app_id": "1:83373430235:android:20203e970668fd701403fe",
         "android_client_info": {
-          "package_name": "com.example.byutinagae"
+          "package_name": "com.byutinagae.byutinagae"
         }
       },
       "oauth_client": [

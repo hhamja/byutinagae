@@ -6,7 +6,7 @@ import 'package:byutinagae/src/features/common/presentation/widget/default_layou
 import 'package:byutinagae/src/features/common/presentation/widget/icon_button/custom_back_button.dart';
 import 'package:byutinagae/src/features/common/presentation/widget/text_button/custom_fill_text_button.dart';
 import 'package:byutinagae/src/features/common/presentation/widget/text_form_field/custom_text_form_filed.dart';
-import 'package:byutinagae/src/features/feedback/data/feedback_repository.dart';
+import 'package:byutinagae/src/features/feedback/data/feedback_repository_impl.dart';
 
 class UserAppFeedbackPage extends StatefulWidget {
   const UserAppFeedbackPage({super.key});
