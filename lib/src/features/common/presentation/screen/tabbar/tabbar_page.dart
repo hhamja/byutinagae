@@ -4,7 +4,7 @@ import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/features/feedback/presentation/screen/home_product_add_request_page.dart';
 import 'package:byutinagae/src/features/home/presentation/screen/home_page.dart';
 import 'package:byutinagae/src/features/search/presentation/screen/home_search_page.dart';
-import 'package:byutinagae/src/features/setting/presentation/screen/setting_page/setting_page.dart';
+import 'package:byutinagae/src/features/setting/presentation/screen/setting_page.dart';
 
 class TabbarPage extends StatefulWidget {
   const TabbarPage({super.key});

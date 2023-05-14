@@ -6,15 +6,17 @@ import 'package:byutinagae/src/features/common/presentation/widget/icon_button/c
 import 'package:byutinagae/src/features/common/presentation/widget/loading/circular_loading.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class PrivacyPolicyDetailPage extends StatefulWidget {
-  const PrivacyPolicyDetailPage({super.key});
+// 역할 : 개인젇보처리방침 웹뷰
+class PersonalInformationPolicyPage extends StatefulWidget {
+  const PersonalInformationPolicyPage({super.key});
 
   @override
-  State<PrivacyPolicyDetailPage> createState() =>
-      _PrivacyPolicyDetailPageState();
+  State<PersonalInformationPolicyPage> createState() =>
+      _PersonalInformationPolicyPageState();
 }
 
-class _PrivacyPolicyDetailPageState extends State<PrivacyPolicyDetailPage> {
+class _PersonalInformationPolicyPageState
+    extends State<PersonalInformationPolicyPage> {
   late final WebViewController _controller;
 
   @override

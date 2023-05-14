@@ -1,8 +1,8 @@
 import 'package:byutinagae/src/features/home/presentation/screen/product_list_page.dart';
+import 'package:byutinagae/src/features/search/presentation/screen/push_search_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
-import 'package:byutinagae/src/features/home/presentation/screen/push_search_page.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/category_item_box.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/home_image.dart';
 

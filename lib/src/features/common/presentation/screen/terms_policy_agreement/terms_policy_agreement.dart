@@ -1,14 +1,15 @@
+import 'package:byutinagae/src/features/setting/presentation/screen/personal_information_policy_page/personal_information_policy_page.dart';
+import 'package:byutinagae/src/features/setting/presentation/screen/terms_conditions_page/terms_conditions_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
-import 'package:byutinagae/src/features/common/presentation/screen/tabbar_page/tabbar_page.dart';
+import 'package:byutinagae/src/features/common/presentation/screen/tabbar/tabbar_page.dart';
 
 import 'package:byutinagae/src/features/common/presentation/widget/text_button/custom_fill_text_button.dart';
-import 'package:byutinagae/src/features/setting/presentation/screen/terms_policy_page/policy_detail_page.dart';
-import 'package:byutinagae/src/features/setting/presentation/screen/terms_policy_page/terms_detail_page.dart';
-import 'package:byutinagae/src/features/setting/presentation/widget/check_box_tile.dart';
+import 'package:byutinagae/src/features/common/presentation/widget/check_box_tile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// 역할 : 앱 설치 후, 개인정보처리방침 및 이용약관에 동의 페이지 UI
 class TermsPolicyAgreementPage extends StatefulWidget {
   const TermsPolicyAgreementPage({super.key});
 
@@ -92,7 +93,7 @@ class _TermsPolicyAgreementPageState extends State<TermsPolicyAgreementPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const TermsDetailPage(),
+                      builder: (context) => const TermsConditionsPage(),
                     ),
                   );
                 },
@@ -118,7 +119,8 @@ class _TermsPolicyAgreementPageState extends State<TermsPolicyAgreementPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const PrivacyPolicyDetailPage(),
+                      builder: (context) =>
+                          const PersonalInformationPolicyPage(),
                     ),
                   );
                 },

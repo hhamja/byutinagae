@@ -3,8 +3,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
-import 'package:byutinagae/src/features/common/presentation/screen/tabbar_page/tabbar_page.dart';
-import 'package:byutinagae/src/features/setting/presentation/screen/terms_policy_page/terms_policy.dart';
+import 'package:byutinagae/src/features/common/presentation/screen/tabbar/tabbar_page.dart';
+import 'package:byutinagae/src/features/common/presentation/screen/terms_policy_agreement/terms_policy_agreement.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatelessWidget {

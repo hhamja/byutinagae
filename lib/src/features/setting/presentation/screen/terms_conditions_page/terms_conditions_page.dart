@@ -6,14 +6,15 @@ import 'package:byutinagae/src/features/common/presentation/widget/icon_button/c
 import 'package:byutinagae/src/features/common/presentation/widget/loading/circular_loading.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class TermsDetailPage extends StatefulWidget {
-  const TermsDetailPage({super.key});
+// 역할 : 이용약관 웹뷰
+class TermsConditionsPage extends StatefulWidget {
+  const TermsConditionsPage({super.key});
 
   @override
-  State<TermsDetailPage> createState() => _TermsDetailPageState();
+  State<TermsConditionsPage> createState() => _TermsConditionsPageState();
 }
 
-class _TermsDetailPageState extends State<TermsDetailPage> {
+class _TermsConditionsPageState extends State<TermsConditionsPage> {
   late final WebViewController controller;
 
   @override

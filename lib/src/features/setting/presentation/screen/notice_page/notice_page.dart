@@ -9,11 +9,11 @@ class AppNoticePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultLayout(
-        leading: const CustomBackButton(),
-        title: const Text('공지사항'),
+    return const DefaultLayout(
+        leading: CustomBackButton(),
+        title: Text('공지사항'),
         body: Column(
-          children: const [
+          children: [
             ListTile(
               contentPadding: EdgeInsets.all(0),
               title: Text(
@@ -27,7 +27,7 @@ class AppNoticePage extends StatelessWidget {
               subtitle: Padding(
                 padding: EdgeInsets.only(top: 3.0),
                 child: Text(
-                  '2023. 04. 01',
+                  '2023. 06. 01',
                   style: TextStyle(
                     fontSize: 14,
                     color: GREY_COLOR,
