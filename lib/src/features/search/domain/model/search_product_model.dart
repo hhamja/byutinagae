@@ -2,12 +2,12 @@ import 'package:byutinagae/src/common/json_converter/json_converter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'product_list_model.freezed.dart';
-part 'product_list_model.g.dart';
+part 'search_product_model.freezed.dart';
+part 'search_product_model.g.dart';
 
 @freezed
-class ProductListModel with _$ProductListModel {
-  const factory ProductListModel({
+class SearchProductModel with _$SearchProductModel {
+  const factory SearchProductModel({
     required String productId,
     // 카테고리
     required String category,
@@ -28,8 +28,8 @@ class ProductListModel with _$ProductListModel {
     // 나중에 총 수/ 리뷰 수 = 평균 평점 구현
     // required int totalScore,
     // required int reivewCount,
-  }) = _ProductListModel;
+  }) = _SearchProductModel;
 
-  factory ProductListModel.fromJson(Map<String, dynamic> json) =>
-      _$ProductListModelFromJson(json);
+  factory SearchProductModel.fromJson(Map<String, dynamic> json) =>
+      _$SearchProductModelFromJson(json);
 }

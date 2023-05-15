@@ -1,4 +1,4 @@
-import 'package:byutinagae/src/features/home/domain/json_converter/json_converter.dart';
+import 'package:byutinagae/src/common/json_converter/json_converter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

@@ -1,4 +1,4 @@
-import 'package:byutinagae/src/features/common/presentation/screen/splash/splash.dart';
+import 'package:byutinagae/src/common/screen/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/app_name.dart';

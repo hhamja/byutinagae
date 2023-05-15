@@ -4,7 +4,12 @@ import 'package:byutinagae/src/config/constant/app_color.dart';
 class SettingTile extends StatelessWidget {
   final void Function() onTap;
   final String title;
-  const SettingTile({super.key, required this.onTap, required this.title});
+
+  const SettingTile({
+    super.key,
+    required this.onTap,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {

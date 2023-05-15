@@ -1,12 +1,12 @@
+import 'package:byutinagae/src/common/widget/default_layout/default_layout.dart';
+import 'package:byutinagae/src/common/widget/dialog/small_dialog.dart';
+import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart';
+import 'package:byutinagae/src/common/widget/text_button/custom_outline_text_button.dart';
 import 'package:byutinagae/src/features/home/domain/model/ingredient_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
-import 'package:byutinagae/src/features/common/presentation/widget/default_layout/default_layout.dart';
-import 'package:byutinagae/src/features/common/presentation/widget/dialog/small_dialog.dart';
-import 'package:byutinagae/src/features/common/presentation/widget/icon_button/custom_back_button.dart';
-import 'package:byutinagae/src/features/common/presentation/widget/text_button/custom_outline_text_button.dart';
-import 'package:byutinagae/src/features/home/data/ingredient_repository_impl.dart';
+import 'package:byutinagae/src/features/home/data/product_repository_impl.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/ingredient_composition.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/ingredient_info_bottom_sheet.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/ingredient_list_tile.dart';

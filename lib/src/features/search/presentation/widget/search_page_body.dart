@@ -1,7 +1,7 @@
+import 'package:byutinagae/src/common/widget/text_form_field/custom_text_form_filed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
-import 'package:byutinagae/src/features/common/presentation/widget/text_form_field/custom_text_form_filed.dart';
 import 'package:byutinagae/src/features/search/presentation/provider/search_provider.dart';
 import 'package:byutinagae/src/features/search/presentation/screen/search_result_page.dart';
 
@@ -20,7 +20,7 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
   @override
   void initState() {
     super.initState();
-    ref.read(searchListProvider.notifier).getSearchList();
+    ref.read(recentSearchListProvider.notifier).getSearchList();
   }
 
   @override
@@ -31,7 +31,7 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> searchList = ref.watch(searchListProvider);
+    final List<String> searchList = ref.watch(recentSearchListProvider);
     return SingleChildScrollView(
       controller: scrollController,
       child: Column(
@@ -81,7 +81,7 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
                             );
                             // 최근검색어에 추가
                             ref
-                                .read(searchListProvider.notifier)
+                                .read(recentSearchListProvider.notifier)
                                 .addSearchQuery(value);
                             // 입력 텍스트 비우기
                             textController.text = '';
@@ -121,7 +121,7 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
               searchList.isNotEmpty
                   ? InkWell(
                       onTap: () async => ref
-                          .read(searchListProvider.notifier)
+                          .read(recentSearchListProvider.notifier)
                           .removeAllSearchIndex(),
                       child: const Padding(
                         padding: EdgeInsets.fromLTRB(16, 10, 0, 10),
@@ -165,7 +165,7 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
                     ),
                     trailing: InkWell(
                       onTap: () async => ref
-                          .read(searchListProvider.notifier)
+                          .read(recentSearchListProvider.notifier)
                           .removeSearchIndex(index),
                       child: const Padding(
                         padding: EdgeInsets.fromLTRB(16, 10, 0, 10),

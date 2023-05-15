@@ -4,7 +4,7 @@ class FirebaseConstant {
   // 성분 테이블 경로
   static const ingredientRef = 'ingredient';
   // 피드백 테이블 경로
-  static const feedbackRef = 'feedback';
+  static const requestRef = 'request';
   // // 피드백 테이블 경로
   // static const ingredientEditRequestRef = 'ingredient_edit_request';
 }

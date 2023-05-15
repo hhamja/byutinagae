@@ -1,9 +1,9 @@
+import 'package:byutinagae/src/common/widget/async_value/custom_error_data.dart';
+import 'package:byutinagae/src/common/widget/icon_button/custom_close_button.dart';
+import 'package:byutinagae/src/common/widget/loading/circular_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/config/constant/webview_url.dart';
-import 'package:byutinagae/src/features/common/presentation/widget/async_value/custom_error_data.dart';
-import 'package:byutinagae/src/features/common/presentation/widget/icon_button/custom_close_button.dart';
-import 'package:byutinagae/src/features/common/presentation/widget/loading/circular_loading.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 // 역할 : 개인젇보처리방침 웹뷰
@@ -29,9 +29,7 @@ class _PersonalInformationPolicyPageState
       ..setNavigationDelegate(
         NavigationDelegate(
           // 로딩 시
-          onProgress: (int progress) {
-            const CustomCircularLoading();
-          },
+          onProgress: (int progress) => const CustomCircularLoading(),
           onPageStarted: (String url) {},
           onPageFinished: (String url) {},
 
@@ -42,9 +40,8 @@ class _PersonalInformationPolicyPageState
             return NavigationDecision.navigate;
           },
           // 페이지 에러 시
-          onWebResourceError: (WebResourceError error) {
-            const CustomErrorData();
-          },
+          onWebResourceError: (WebResourceError error) =>
+              const CustomErrorData(),
         ),
       )
       ..loadRequest(
@@ -60,9 +57,7 @@ class _PersonalInformationPolicyPageState
       appBar: AppBar(
         backgroundColor: WHITE_COLOR,
         automaticallyImplyLeading: false,
-        actions: const [
-          CustomCloseButton(),
-        ],
+        actions: const [CustomCloseButton()],
       ),
       body: Container(
         color: WHITE_COLOR,
