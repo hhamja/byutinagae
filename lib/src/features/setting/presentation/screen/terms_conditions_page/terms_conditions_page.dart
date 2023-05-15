@@ -6,7 +6,7 @@ import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/config/constant/webview_url.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-// 역할 : 이용약관 웹뷰
+// 이용약관 웹뷰
 class TermsConditionsPage extends StatefulWidget {
   const TermsConditionsPage({super.key});
 

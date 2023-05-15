@@ -1,14 +1,9 @@
 import 'package:byutinagae/src/features/home/domain/model/detail_product_model.dart';
 import 'package:byutinagae/src/features/home/domain/model/ingredient_model.dart';
 import 'package:byutinagae/src/features/home/domain/model/product_list_model.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/firebase_constant.dart';
 import 'package:byutinagae/src/features/home/domain/repository/product_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-final productRepositoryProvider = Provider<ProductRepository>((ref) {
-  return ProductRepositoryImplement();
-});
 
 class ProductRepositoryImplement implements ProductRepository {
   final _productRef =

@@ -6,7 +6,7 @@ import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/config/constant/webview_url.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-// 역할 : 개인젇보처리방침 웹뷰
+// 개인젇보처리방침 웹뷰
 class PersonalInformationPolicyPage extends StatefulWidget {
   const PersonalInformationPolicyPage({super.key});
 

@@ -1,6 +1,6 @@
 import 'package:byutinagae/src/features/search/domain/model/search_product_model.dart';
 
-// 역할 : 검색 리포지토리 인터페이스
+// 검색 리파지토리 인터페이스
 abstract class SearchRepository {
   // 제품 검색하기
   Future<List<SearchProductModel>> searchProduct(String query);

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
-// 역할 : 가격 단위에 맞춰서 변환
+// 가격 단위에 맞춰서 변환
 class PriceConverter implements JsonConverter<String, int> {
   const PriceConverter();
 
@@ -23,7 +23,7 @@ class PriceConverter implements JsonConverter<String, int> {
   }
 }
 
-// 역할 : 이미지 url 추출
+// 이미지 url 추출
 class ImageUrlConverter implements JsonConverter<String, List> {
   const ImageUrlConverter();
 
@@ -43,7 +43,7 @@ class ImageUrlConverter implements JsonConverter<String, List> {
   }
 }
 
-// 역할 : TimeStamp 타입 정의
+// TimeStamp 타입 정의
 class TimeStampConverter implements JsonConverter<Timestamp, dynamic> {
   const TimeStampConverter();
 
@@ -54,7 +54,7 @@ class TimeStampConverter implements JsonConverter<Timestamp, dynamic> {
   dynamic toJson(Timestamp timestamp) => timestamp;
 }
 
-// 역할 : 문서 id를 추출하여 id 속성 값에 넣기
+// 문서 id를 추출하여 id 속성 값에 넣기
 class DocumentIdConverter implements JsonConverter<String, DocumentSnapshot> {
   const DocumentIdConverter();
 

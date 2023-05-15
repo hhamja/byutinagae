@@ -1,10 +1,10 @@
 import 'package:byutinagae/src/common/widget/text_button/custom_fill_text_button.dart';
 import 'package:byutinagae/src/common/widget/text_form_field/custom_text_form_filed.dart';
+import 'package:byutinagae/src/features/request/domain/provider/requst_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/config/constant/app_name.dart';
-import 'package:byutinagae/src/features/request/data/request_repository_impl.dart';
 
 class ProductAddRequestBody extends StatefulWidget {
   const ProductAddRequestBody({super.key});
@@ -86,7 +86,7 @@ class _ProductAddRequestBodyState extends State<ProductAddRequestBody> {
                 ? () async {
                     ref
                         .read(requestRepositoryProvider)
-                        .addUserFeedback('[제품] ${textController.text}');
+                        .requestAddProduct('[제품] ${textController.text}');
                     textController.clear();
                     showDialog(
                       context: context,

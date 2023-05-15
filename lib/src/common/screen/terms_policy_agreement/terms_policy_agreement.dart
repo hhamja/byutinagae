@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// 역할 : 앱 설치 후, 개인정보처리방침 및 이용약관에 동의 페이지 UI
+// 앱 설치 후, 개인정보처리방침 및 이용약관에 동의 페이지 UI
 class TermsPolicyAgreementPage extends StatefulWidget {
   const TermsPolicyAgreementPage({super.key});
 

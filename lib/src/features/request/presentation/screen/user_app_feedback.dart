@@ -2,11 +2,11 @@ import 'package:byutinagae/src/common/widget/default_layout/default_layout.dart'
 import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart';
 import 'package:byutinagae/src/common/widget/text_button/custom_fill_text_button.dart';
 import 'package:byutinagae/src/common/widget/text_form_field/custom_text_form_filed.dart';
+import 'package:byutinagae/src/features/request/domain/provider/requst_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/config/constant/app_name.dart';
-import 'package:byutinagae/src/features/request/data/request_repository_impl.dart';
 
 class UserAppFeedbackPage extends StatefulWidget {
   const UserAppFeedbackPage({super.key});
@@ -99,7 +99,7 @@ class _UserAppFeedbackPageState extends State<UserAppFeedbackPage> {
               ? () async {
                   ref
                       .read(requestRepositoryProvider)
-                      .addUserFeedback('[카테고리] ${textController.text}');
+                      .requestAddProduct('[카테고리] ${textController.text}');
                   textController.clear();
                   showDialog(
                     context: context,

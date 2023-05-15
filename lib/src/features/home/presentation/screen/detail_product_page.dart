@@ -2,6 +2,7 @@ import 'package:byutinagae/src/common/widget/async_value/custom_error_data.dart'
 import 'package:byutinagae/src/common/widget/default_layout/default_layout.dart';
 import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart';
 import 'package:byutinagae/src/common/widget/loading/circular_loading.dart';
+import 'package:byutinagae/src/features/home/presentation/provider/ingredient_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
