@@ -10,7 +10,7 @@ abstract class ProductRepository {
   Future<DetailProductModel> getDetailProduct(id);
 
   // 특정 제품의 성분 정보 받기
-  Future<List<IngredientModel>> getProductIngredient(id);
+  Future<List<IngredientModel>> getProductIngredient(idList);
 
   // 성분 수정 요청
   Future addIngredientEditRequest(brand, productname);

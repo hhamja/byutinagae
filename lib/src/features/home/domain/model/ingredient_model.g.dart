@@ -8,7 +8,7 @@ part of 'ingredient_model.dart';
 
 _$_IngredientModel _$$_IngredientModelFromJson(Map<String, dynamic> json) =>
     _$_IngredientModel(
-      id: json['id'] as int,
+      id: json['id'] as String,
       korName: json['korName'] as String,
       blendingPurpose: json['blendingPurpose'] as String,
       ewg: json['ewg'] as String,

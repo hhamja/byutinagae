@@ -1,5 +1,5 @@
-import 'package:byutinagae/src/features/search/data/repository_impl/search_repository_impl.dart';
 import 'package:byutinagae/src/features/search/domain/model/search_product_model.dart';
+import 'package:byutinagae/src/features/search/domain/provider/search_provider.dart';
 import 'package:byutinagae/src/features/search/domain/repository/search_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

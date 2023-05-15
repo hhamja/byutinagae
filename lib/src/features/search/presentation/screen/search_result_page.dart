@@ -91,8 +91,7 @@ class SearchResultPage extends ConsumerWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailProductPage(
-                          // id: productList[index].productId,
-                          id: 'g3kprJi5ZGKJKww9nTO0',
+                          id: productList[index].id,
                         ),
                       ),
                     );

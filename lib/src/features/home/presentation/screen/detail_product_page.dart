@@ -20,7 +20,6 @@ class DetailProductPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final product = ref.watch(productDetailProvider(id));
-    final ingredient = ref.watch(ingredientProvider(id));
 
     return DefaultLayout(
       leading: const CustomBackButton(),
@@ -43,76 +42,80 @@ class DetailProductPage extends ConsumerWidget {
       body: product.when(
         error: (error, stackTrace) => const CustomErrorData(),
         loading: () => const CustomCircularLoading(),
-        data: (product) => SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // 제품 사진
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.5,
-                child: Image.network(
-                  product.fullImage,
-                  fit: BoxFit.cover,
+        data: (product) {
+          final ingredient = ref.watch(ingredientProvider(product.ingredient));
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // 제품 사진
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: Image.network(
+                    product.fullImage,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 21),
-              ProductDetailBox(
-                brand: product.brand,
-                price: product.price,
-                productName: product.productName,
-                volume: product.volume,
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 21.0),
-                child: Divider(
-                  color: DEEP_LIGHT_GREY_COLOR,
-                  thickness: 3,
+                const SizedBox(height: 21),
+                ProductDetailBox(
+                  brand: product.brand,
+                  price: product.price,
+                  productName: product.productName,
+                  volume: product.volume,
                 ),
-              ),
-              ingredient.when(
-                data: (ingredientList) {
-                  final List<String> ewgList = ingredientList.map((ingredient) {
-                    final int dashIndex = ingredient.ewg.indexOf('-');
-                    if (dashIndex != -1) {
-                      // '-' 이후 문자열 추출
-                      return ingredient.ewg.substring(dashIndex + 1);
-                    } else {
-                      // 그대로 반환
-                      return ingredient.ewg;
-                    }
-                  }).toList();
-                  final List<String> ewgRiskList = ewgList
-                      .where((result) =>
-                          int.tryParse(result) != null &&
-                          int.parse(result) >= 3)
-                      .toList();
-                  return ProductIngredientBox(
-                    onTap: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => IngredientListPage(
-                            ingredientList: ingredientList,
-                            productName: product.productName,
-                            brand: product.brand,
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 21.0),
+                  child: Divider(
+                    color: DEEP_LIGHT_GREY_COLOR,
+                    thickness: 3,
+                  ),
+                ),
+                ingredient.when(
+                  data: (ingredientList) {
+                    final List<String> ewgList =
+                        ingredientList.map((ingredient) {
+                      final int dashIndex = ingredient.ewg.indexOf('-');
+                      if (dashIndex != -1) {
+                        // '-' 이후 문자열 추출
+                        return ingredient.ewg.substring(dashIndex + 1);
+                      } else {
+                        // 그대로 반환
+                        return ingredient.ewg;
+                      }
+                    }).toList();
+                    final List<String> ewgRiskList = ewgList
+                        .where((result) =>
+                            int.tryParse(result) != null &&
+                            int.parse(result) >= 3)
+                        .toList();
+                    return ProductIngredientBox(
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => IngredientListPage(
+                              ingredientList: ingredientList,
+                              productName: product.productName,
+                              brand: product.brand,
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    totalIngredient: ingredientList.length,
-                    riskIngredient: ewgRiskList.length,
-                  );
-                },
-                error: (error, stackTrace) => const Center(
-                  child: Text('에러입니다'),
+                        );
+                      },
+                      totalIngredient: ingredientList.length,
+                      riskIngredient: ewgRiskList.length,
+                    );
+                  },
+                  error: (error, stackTrace) => const Center(
+                    child: Text('에러입니다'),
+                  ),
+                  loading: () => const CustomCircularLoading(),
                 ),
-                loading: () => const CustomCircularLoading(),
-              ),
-            ],
-          ),
-        ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

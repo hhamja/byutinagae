@@ -20,12 +20,13 @@ DetailProductModel _$DetailProductModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DetailProductModel {
-  String get productId => throw _privateConstructorUsedError; // 제품 사진
+  String get id => throw _privateConstructorUsedError; // 제품 사진
   @ImageUrlConverter()
   String get fullImage => throw _privateConstructorUsedError; // 브랜드 명
   String get brand => throw _privateConstructorUsedError; // 제품 이름
   String get productName => throw _privateConstructorUsedError; // 제품 용량
-  String get volume => throw _privateConstructorUsedError; // 가격
+  String get volume => throw _privateConstructorUsedError; // 성분 리스트
+  List<String> get ingredient => throw _privateConstructorUsedError; // 가격
   @PriceConverter()
   String get price => throw _privateConstructorUsedError; // 제품 등록 시간
   @TimeStampConverter()
@@ -44,11 +45,12 @@ abstract class $DetailProductModelCopyWith<$Res> {
       _$DetailProductModelCopyWithImpl<$Res, DetailProductModel>;
   @useResult
   $Res call(
-      {String productId,
+      {String id,
       @ImageUrlConverter() String fullImage,
       String brand,
       String productName,
       String volume,
+      List<String> ingredient,
       @PriceConverter() String price,
       @TimeStampConverter() Timestamp createdAt});
 }
@@ -66,18 +68,19 @@ class _$DetailProductModelCopyWithImpl<$Res, $Val extends DetailProductModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productId = null,
+    Object? id = null,
     Object? fullImage = null,
     Object? brand = null,
     Object? productName = null,
     Object? volume = null,
+    Object? ingredient = null,
     Object? price = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       fullImage: null == fullImage
           ? _value.fullImage
@@ -95,6 +98,10 @@ class _$DetailProductModelCopyWithImpl<$Res, $Val extends DetailProductModel>
           ? _value.volume
           : volume // ignore: cast_nullable_to_non_nullable
               as String,
+      ingredient: null == ingredient
+          ? _value.ingredient
+          : ingredient // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -116,11 +123,12 @@ abstract class _$$_DetailProductModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String productId,
+      {String id,
       @ImageUrlConverter() String fullImage,
       String brand,
       String productName,
       String volume,
+      List<String> ingredient,
       @PriceConverter() String price,
       @TimeStampConverter() Timestamp createdAt});
 }
@@ -136,18 +144,19 @@ class __$$_DetailProductModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productId = null,
+    Object? id = null,
     Object? fullImage = null,
     Object? brand = null,
     Object? productName = null,
     Object? volume = null,
+    Object? ingredient = null,
     Object? price = null,
     Object? createdAt = null,
   }) {
     return _then(_$_DetailProductModel(
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       fullImage: null == fullImage
           ? _value.fullImage
@@ -165,6 +174,10 @@ class __$$_DetailProductModelCopyWithImpl<$Res>
           ? _value.volume
           : volume // ignore: cast_nullable_to_non_nullable
               as String,
+      ingredient: null == ingredient
+          ? _value._ingredient
+          : ingredient // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -181,19 +194,22 @@ class __$$_DetailProductModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_DetailProductModel implements _DetailProductModel {
   const _$_DetailProductModel(
-      {required this.productId,
+      {this.id = '',
       @ImageUrlConverter() required this.fullImage,
       required this.brand,
       required this.productName,
       required this.volume,
+      required final List<String> ingredient,
       @PriceConverter() required this.price,
-      @TimeStampConverter() required this.createdAt});
+      @TimeStampConverter() required this.createdAt})
+      : _ingredient = ingredient;
 
   factory _$_DetailProductModel.fromJson(Map<String, dynamic> json) =>
       _$$_DetailProductModelFromJson(json);
 
   @override
-  final String productId;
+  @JsonKey()
+  final String id;
 // 제품 사진
   @override
   @ImageUrlConverter()
@@ -207,6 +223,16 @@ class _$_DetailProductModel implements _DetailProductModel {
 // 제품 용량
   @override
   final String volume;
+// 성분 리스트
+  final List<String> _ingredient;
+// 성분 리스트
+  @override
+  List<String> get ingredient {
+    if (_ingredient is EqualUnmodifiableListView) return _ingredient;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ingredient);
+  }
+
 // 가격
   @override
   @PriceConverter()
@@ -218,7 +244,7 @@ class _$_DetailProductModel implements _DetailProductModel {
 
   @override
   String toString() {
-    return 'DetailProductModel(productId: $productId, fullImage: $fullImage, brand: $brand, productName: $productName, volume: $volume, price: $price, createdAt: $createdAt)';
+    return 'DetailProductModel(id: $id, fullImage: $fullImage, brand: $brand, productName: $productName, volume: $volume, ingredient: $ingredient, price: $price, createdAt: $createdAt)';
   }
 
   @override
@@ -226,14 +252,15 @@ class _$_DetailProductModel implements _DetailProductModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DetailProductModel &&
-            (identical(other.productId, productId) ||
-                other.productId == productId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.fullImage, fullImage) ||
                 other.fullImage == fullImage) &&
             (identical(other.brand, brand) || other.brand == brand) &&
             (identical(other.productName, productName) ||
                 other.productName == productName) &&
             (identical(other.volume, volume) || other.volume == volume) &&
+            const DeepCollectionEquality()
+                .equals(other._ingredient, _ingredient) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -241,8 +268,16 @@ class _$_DetailProductModel implements _DetailProductModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, productId, fullImage, brand,
-      productName, volume, price, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      fullImage,
+      brand,
+      productName,
+      volume,
+      const DeepCollectionEquality().hash(_ingredient),
+      price,
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -261,11 +296,12 @@ class _$_DetailProductModel implements _DetailProductModel {
 
 abstract class _DetailProductModel implements DetailProductModel {
   const factory _DetailProductModel(
-          {required final String productId,
+          {final String id,
           @ImageUrlConverter() required final String fullImage,
           required final String brand,
           required final String productName,
           required final String volume,
+          required final List<String> ingredient,
           @PriceConverter() required final String price,
           @TimeStampConverter() required final Timestamp createdAt}) =
       _$_DetailProductModel;
@@ -274,7 +310,7 @@ abstract class _DetailProductModel implements DetailProductModel {
       _$_DetailProductModel.fromJson;
 
   @override
-  String get productId;
+  String get id;
   @override // 제품 사진
   @ImageUrlConverter()
   String get fullImage;
@@ -284,6 +320,8 @@ abstract class _DetailProductModel implements DetailProductModel {
   String get productName;
   @override // 제품 용량
   String get volume;
+  @override // 성분 리스트
+  List<String> get ingredient;
   @override // 가격
   @PriceConverter()
   String get price;

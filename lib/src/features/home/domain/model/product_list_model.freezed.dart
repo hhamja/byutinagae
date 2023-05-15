@@ -20,7 +20,7 @@ ProductListModel _$ProductListModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductListModel {
-  String get productId => throw _privateConstructorUsedError; // 카테고리
+  String get id => throw _privateConstructorUsedError; // 카테고리
   String get category => throw _privateConstructorUsedError; // 제품 사진
   @ImageUrlConverter()
   String get thumbnailImage => throw _privateConstructorUsedError; // 브랜드 명
@@ -45,7 +45,7 @@ abstract class $ProductListModelCopyWith<$Res> {
       _$ProductListModelCopyWithImpl<$Res, ProductListModel>;
   @useResult
   $Res call(
-      {String productId,
+      {String id,
       String category,
       @ImageUrlConverter() String thumbnailImage,
       String brand,
@@ -68,7 +68,7 @@ class _$ProductListModelCopyWithImpl<$Res, $Val extends ProductListModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productId = null,
+    Object? id = null,
     Object? category = null,
     Object? thumbnailImage = null,
     Object? brand = null,
@@ -78,9 +78,9 @@ class _$ProductListModelCopyWithImpl<$Res, $Val extends ProductListModel>
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       category: null == category
           ? _value.category
@@ -123,7 +123,7 @@ abstract class _$$_ProductListModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String productId,
+      {String id,
       String category,
       @ImageUrlConverter() String thumbnailImage,
       String brand,
@@ -144,7 +144,7 @@ class __$$_ProductListModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productId = null,
+    Object? id = null,
     Object? category = null,
     Object? thumbnailImage = null,
     Object? brand = null,
@@ -154,9 +154,9 @@ class __$$_ProductListModelCopyWithImpl<$Res>
     Object? createdAt = null,
   }) {
     return _then(_$_ProductListModel(
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       category: null == category
           ? _value.category
@@ -194,7 +194,7 @@ class __$$_ProductListModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ProductListModel implements _ProductListModel {
   const _$_ProductListModel(
-      {required this.productId,
+      {this.id = '',
       required this.category,
       @ImageUrlConverter() required this.thumbnailImage,
       required this.brand,
@@ -207,7 +207,8 @@ class _$_ProductListModel implements _ProductListModel {
       _$$_ProductListModelFromJson(json);
 
   @override
-  final String productId;
+  @JsonKey()
+  final String id;
 // 카테고리
   @override
   final String category;
@@ -235,7 +236,7 @@ class _$_ProductListModel implements _ProductListModel {
 
   @override
   String toString() {
-    return 'ProductListModel(productId: $productId, category: $category, thumbnailImage: $thumbnailImage, brand: $brand, productName: $productName, volume: $volume, price: $price, createdAt: $createdAt)';
+    return 'ProductListModel(id: $id, category: $category, thumbnailImage: $thumbnailImage, brand: $brand, productName: $productName, volume: $volume, price: $price, createdAt: $createdAt)';
   }
 
   @override
@@ -243,8 +244,7 @@ class _$_ProductListModel implements _ProductListModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductListModel &&
-            (identical(other.productId, productId) ||
-                other.productId == productId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.thumbnailImage, thumbnailImage) ||
@@ -260,8 +260,8 @@ class _$_ProductListModel implements _ProductListModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, productId, category,
-      thumbnailImage, brand, productName, volume, price, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, category, thumbnailImage,
+      brand, productName, volume, price, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -279,7 +279,7 @@ class _$_ProductListModel implements _ProductListModel {
 
 abstract class _ProductListModel implements ProductListModel {
   const factory _ProductListModel(
-          {required final String productId,
+          {final String id,
           required final String category,
           @ImageUrlConverter() required final String thumbnailImage,
           required final String brand,
@@ -293,7 +293,7 @@ abstract class _ProductListModel implements ProductListModel {
       _$_ProductListModel.fromJson;
 
   @override
-  String get productId;
+  String get id;
   @override // 카테고리
   String get category;
   @override // 제품 사진

@@ -8,7 +8,7 @@ part 'detail_product_model.g.dart';
 @freezed
 class DetailProductModel with _$DetailProductModel {
   const factory DetailProductModel({
-    required String productId,
+    @Default('') String id,
     // 제품 사진
     @ImageUrlConverter() required String fullImage,
     // 브랜드 명
@@ -17,6 +17,8 @@ class DetailProductModel with _$DetailProductModel {
     required String productName,
     // 제품 용량
     required String volume,
+    // 성분 리스트
+    required List<String> ingredient,
     // 가격
     @PriceConverter() required String price,
     // 제품 등록 시간

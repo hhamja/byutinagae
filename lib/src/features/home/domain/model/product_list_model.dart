@@ -8,7 +8,9 @@ part 'product_list_model.g.dart';
 @freezed
 class ProductListModel with _$ProductListModel {
   const factory ProductListModel({
-    required String productId,
+    // Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
+    // 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
+    @Default('')  String id,
     // 카테고리
     required String category,
     // 제품 사진

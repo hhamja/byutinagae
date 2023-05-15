@@ -31,8 +31,8 @@ class ProductListItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 70,
-              width: 70,
+              height: 100,
+              width: 100,
               child: Image.network(
                 photoUrl,
                 fit: BoxFit.cover,
@@ -51,7 +51,7 @@ class ProductListItem extends StatelessWidget {
                       color: GREY_COLOR,
                     ),
                   ),
-                  const SizedBox(height: 1),
+                  const SizedBox(height: 5),
                   Text(
                     productName,
                     maxLines: 3,
@@ -61,7 +61,7 @@ class ProductListItem extends StatelessWidget {
                       color: TEXT_COLOR,
                     ),
                   ),
-                  const SizedBox(height: 1),
+                  const SizedBox(height: 5),
                   Text(
                     '$volume / $price',
                     style: const TextStyle(

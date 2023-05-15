@@ -9,7 +9,7 @@ part of 'search_product_model.dart';
 _$_SearchProductModel _$$_SearchProductModelFromJson(
         Map<String, dynamic> json) =>
     _$_SearchProductModel(
-      productId: json['productId'] as String,
+      id: json['id'] as String? ?? '',
       category: json['category'] as String,
       thumbnailImage:
           const ImageUrlConverter().fromJson(json['thumbnailImage'] as List),
@@ -23,7 +23,7 @@ _$_SearchProductModel _$$_SearchProductModelFromJson(
 Map<String, dynamic> _$$_SearchProductModelToJson(
         _$_SearchProductModel instance) =>
     <String, dynamic>{
-      'productId': instance.productId,
+      'id': instance.id,
       'category': instance.category,
       'thumbnailImage':
           const ImageUrlConverter().toJson(instance.thumbnailImage),

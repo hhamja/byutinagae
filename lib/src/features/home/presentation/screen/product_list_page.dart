@@ -16,7 +16,7 @@ class ProductListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ScrollController _controller = ScrollController();
+    final ScrollController controller = ScrollController();
     final productList = ref.watch(productListProvider);
 
     return DefaultLayout(
@@ -43,7 +43,7 @@ class ProductListPage extends ConsumerWidget {
         loading: () => const CustomCircularLoading(),
         data: (data) => ListView.separated(
           itemCount: data.length,
-          controller: _controller,
+          controller: controller,
           separatorBuilder: (context, index) => const Divider(
             color: DEEP_LIGHT_GREY_COLOR,
             thickness: 1,
@@ -55,8 +55,7 @@ class ProductListPage extends ConsumerWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => DetailProductPage(
-                    // id: data[index].productId,
-                    id: 'g3kprJi5ZGKJKww9nTO0',
+                    id: data[index].id,
                   ),
                 ),
               );

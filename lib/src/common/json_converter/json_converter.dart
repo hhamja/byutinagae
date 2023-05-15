@@ -55,7 +55,8 @@ class TimeStampConverter implements JsonConverter<Timestamp, dynamic> {
 }
 
 // 문서 id를 추출하여 id 속성 값에 넣기
-class DocumentIdConverter implements JsonConverter<String, DocumentSnapshot> {
+class DocumentIdConverter
+    implements JsonConverter<String, DocumentSnapshot<Object>> {
   const DocumentIdConverter();
 
   // 문서의 id 값을 추출
@@ -63,7 +64,7 @@ class DocumentIdConverter implements JsonConverter<String, DocumentSnapshot> {
   String fromJson(DocumentSnapshot documentSnapshot) => documentSnapshot.id;
 
   @override
-  DocumentSnapshot toJson(String id) {
+  DocumentSnapshot<Object> toJson(String id) {
     throw 'UnimplementedError()';
   }
 }

@@ -8,7 +8,7 @@ part 'search_product_model.g.dart';
 @freezed
 class SearchProductModel with _$SearchProductModel {
   const factory SearchProductModel({
-    required String productId,
+    @Default('') String id,
     // 카테고리
     required String category,
     // 제품 사진

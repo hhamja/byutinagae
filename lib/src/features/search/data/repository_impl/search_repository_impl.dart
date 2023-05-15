@@ -1,11 +1,6 @@
 import 'package:byutinagae/src/features/search/domain/model/search_product_model.dart';
 import 'package:byutinagae/src/features/search/domain/repository/search_repository.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-final searchRepositoryProvider = Provider<SearchRepository>(
-  (ref) => SearchRepositoryImplement(),
-);
 
 class SearchRepositoryImplement implements SearchRepository {
   // 제품 검색하기

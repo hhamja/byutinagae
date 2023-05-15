@@ -20,7 +20,7 @@ SearchProductModel _$SearchProductModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SearchProductModel {
-  String get productId => throw _privateConstructorUsedError; // 카테고리
+  String get id => throw _privateConstructorUsedError; // 카테고리
   String get category => throw _privateConstructorUsedError; // 제품 사진
   @ImageUrlConverter()
   String get thumbnailImage => throw _privateConstructorUsedError; // 브랜드 명
@@ -45,7 +45,7 @@ abstract class $SearchProductModelCopyWith<$Res> {
       _$SearchProductModelCopyWithImpl<$Res, SearchProductModel>;
   @useResult
   $Res call(
-      {String productId,
+      {String id,
       String category,
       @ImageUrlConverter() String thumbnailImage,
       String brand,
@@ -68,7 +68,7 @@ class _$SearchProductModelCopyWithImpl<$Res, $Val extends SearchProductModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productId = null,
+    Object? id = null,
     Object? category = null,
     Object? thumbnailImage = null,
     Object? brand = null,
@@ -78,9 +78,9 @@ class _$SearchProductModelCopyWithImpl<$Res, $Val extends SearchProductModel>
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       category: null == category
           ? _value.category
@@ -123,7 +123,7 @@ abstract class _$$_SearchProductModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String productId,
+      {String id,
       String category,
       @ImageUrlConverter() String thumbnailImage,
       String brand,
@@ -144,7 +144,7 @@ class __$$_SearchProductModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productId = null,
+    Object? id = null,
     Object? category = null,
     Object? thumbnailImage = null,
     Object? brand = null,
@@ -154,9 +154,9 @@ class __$$_SearchProductModelCopyWithImpl<$Res>
     Object? createdAt = null,
   }) {
     return _then(_$_SearchProductModel(
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       category: null == category
           ? _value.category
@@ -194,7 +194,7 @@ class __$$_SearchProductModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SearchProductModel implements _SearchProductModel {
   const _$_SearchProductModel(
-      {required this.productId,
+      {this.id = '',
       required this.category,
       @ImageUrlConverter() required this.thumbnailImage,
       required this.brand,
@@ -207,7 +207,8 @@ class _$_SearchProductModel implements _SearchProductModel {
       _$$_SearchProductModelFromJson(json);
 
   @override
-  final String productId;
+  @JsonKey()
+  final String id;
 // 카테고리
   @override
   final String category;
@@ -235,7 +236,7 @@ class _$_SearchProductModel implements _SearchProductModel {
 
   @override
   String toString() {
-    return 'SearchProductModel(productId: $productId, category: $category, thumbnailImage: $thumbnailImage, brand: $brand, productName: $productName, volume: $volume, price: $price, createdAt: $createdAt)';
+    return 'SearchProductModel(id: $id, category: $category, thumbnailImage: $thumbnailImage, brand: $brand, productName: $productName, volume: $volume, price: $price, createdAt: $createdAt)';
   }
 
   @override
@@ -243,8 +244,7 @@ class _$_SearchProductModel implements _SearchProductModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SearchProductModel &&
-            (identical(other.productId, productId) ||
-                other.productId == productId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.thumbnailImage, thumbnailImage) ||
@@ -260,8 +260,8 @@ class _$_SearchProductModel implements _SearchProductModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, productId, category,
-      thumbnailImage, brand, productName, volume, price, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, category, thumbnailImage,
+      brand, productName, volume, price, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -280,7 +280,7 @@ class _$_SearchProductModel implements _SearchProductModel {
 
 abstract class _SearchProductModel implements SearchProductModel {
   const factory _SearchProductModel(
-          {required final String productId,
+          {final String id,
           required final String category,
           @ImageUrlConverter() required final String thumbnailImage,
           required final String brand,
@@ -294,7 +294,7 @@ abstract class _SearchProductModel implements SearchProductModel {
       _$_SearchProductModel.fromJson;
 
   @override
-  String get productId;
+  String get id;
   @override // 카테고리
   String get category;
   @override // 제품 사진
