@@ -3,7 +3,9 @@ import 'package:byutinagae/src/common/widget/dialog/small_dialog.dart';
 import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart';
 import 'package:byutinagae/src/common/widget/text_button/custom_outline_text_button.dart';
 import 'package:byutinagae/src/features/home/domain/model/ingredient_model.dart';
+import 'package:byutinagae/src/features/home/domain/model/ingredient_modification_request_model.dart';
 import 'package:byutinagae/src/features/home/domain/provider/product_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
@@ -193,11 +195,19 @@ class _IngredientListPageState extends State<IngredientListPage> {
                         content:
                             '${widget.brand} ${widget.productName}의\n성분 정보를 수정 요청하시겠어요?',
                         completeFun: () async {
+                          final ingredientModificationRequestModel =
+                              IngredientModificationRequestModel(
+                            uid: '',
+                            brand: widget.brand,
+                            productName: widget.productName,
+                            ingredient: '',
+                            createdAt: Timestamp.now(),
+                          );
                           // 서버에 성분 수정 요청 데이터 저장
                           ref
                               .read(productRepositoryProvider)
-                              .addIngredientEditRequest(
-                                  widget.brand, widget.productName);
+                              .addIngredientModificationRequest(
+                                  ingredientModificationRequestModel);
                           // 감사 다이얼로그 띄우기
                           showDialog(
                             context: context,
