@@ -1,6 +1,8 @@
 import 'package:byutinagae/src/common/widget/text_button/custom_fill_text_button.dart';
 import 'package:byutinagae/src/common/widget/text_form_field/custom_text_form_filed.dart';
-import 'package:byutinagae/src/features/request/domain/provider/requst_provider.dart';
+import 'package:byutinagae/src/features/request/domain/model/request_additional_product_model.dart';
+import 'package:byutinagae/src/features/request/domain/provider/request_product_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
@@ -84,9 +86,14 @@ class _ProductAddRequestBodyState extends State<ProductAddRequestBody> {
             content: '$APP_NAME 팀에게 보내기',
             onPressed: textController.text != ''
                 ? () async {
+                    final model = RequestAdditionalProductModel(
+                      content: textController.text.trim(),
+                      createdAt: Timestamp.now(),
+                      uid: '',
+                    );
                     ref
-                        .read(requestRepositoryProvider)
-                        .requestAddProduct('[제품] ${textController.text}');
+                        .read(requestProductRepositoryProvider)
+                        .addRequestProduct(model);
                     textController.clear();
                     showDialog(
                       context: context,

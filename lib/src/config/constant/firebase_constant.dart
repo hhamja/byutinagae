@@ -4,7 +4,7 @@ class FirebaseConstant {
   // 성분
   static const ingredientRef = 'ingredient';
   // 제품 요청
-  static const requestRef = 'request';
+  static const requestProductRef = 'request_product';
   // 성분 수정 요청
   static const ingredientModificationRef = 'ingredient_modification_request';
 }
