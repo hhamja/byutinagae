@@ -51,7 +51,7 @@ class ProductListItem extends StatelessWidget {
                       color: GREY_COLOR,
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 8),
                   Text(
                     productName,
                     maxLines: 3,
@@ -61,7 +61,7 @@ class ProductListItem extends StatelessWidget {
                       color: TEXT_COLOR,
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 8),
                   Text(
                     '$volume / $price',
                     style: const TextStyle(

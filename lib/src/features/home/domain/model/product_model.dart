@@ -2,19 +2,21 @@ import 'package:byutinagae/src/common/json_converter/json_converter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'product_list_model.freezed.dart';
-part 'product_list_model.g.dart';
+part 'product_model.freezed.dart';
+part 'product_model.g.dart';
 
 @freezed
-class ProductListModel with _$ProductListModel {
-  const factory ProductListModel({
+class ProductModel with _$ProductModel {
+  const factory ProductModel({
     // Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
     // 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
-    @Default('')  String id,
+    @Default('') String id,
     // 카테고리
     required String category,
-    // 제품 사진
+    // 썸네일 이미지 url
     @ImageUrlConverter() required String thumbnailImage,
+    // 풀 사이즈 이미지 url
+    @ImageUrlConverter() required String fullImage,
     // 브랜드 명
     required String brand,
     // 제품 이름
@@ -32,6 +34,6 @@ class ProductListModel with _$ProductListModel {
     // required int reivewCount,
   }) = _ProductListModel;
 
-  factory ProductListModel.fromJson(Map<String, dynamic> json) =>
-      _$ProductListModelFromJson(json);
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductModelFromJson(json);
 }

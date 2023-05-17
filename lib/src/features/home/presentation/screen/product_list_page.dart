@@ -17,7 +17,7 @@ class ProductListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ScrollController controller = ScrollController();
-    final productList = ref.watch(productListProvider);
+    final asyncProductList = ref.watch(productListProvider);
 
     return DefaultLayout(
       leading: const CustomBackButton(),
@@ -38,11 +38,11 @@ class ProductListPage extends ConsumerWidget {
           ),
         ),
       ],
-      body: productList.when(
+      body: asyncProductList.when(
         error: (error, stackTrace) => const CustomErrorData(),
         loading: () => const CustomCircularLoading(),
-        data: (data) => ListView.separated(
-          itemCount: data.length,
+        data: (productList) => ListView.separated(
+          itemCount: productList.length,
           controller: controller,
           separatorBuilder: (context, index) => const Divider(
             color: DEEP_LIGHT_GREY_COLOR,
@@ -54,17 +54,16 @@ class ProductListPage extends ConsumerWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailProductPage(
-                    id: data[index].id,
-                  ),
+                  builder: (context) =>
+                      DetailProductPage(productModel: productList[index]),
                 ),
               );
             },
-            brand: data[index].brand,
-            photoUrl: data[index].thumbnailImage,
-            price: data[index].price,
-            productName: data[index].productName,
-            volume: data[index].volume,
+            brand: productList[index].brand,
+            photoUrl: productList[index].thumbnailImage,
+            price: productList[index].price,
+            productName: productList[index].productName,
+            volume: productList[index].volume,
           ),
         ),
       ),

@@ -1,9 +1,9 @@
-import 'package:byutinagae/src/features/home/domain/model/product_list_model.dart';
+import 'package:byutinagae/src/features/home/domain/model/product_model.dart';
 import 'package:byutinagae/src/features/home/domain/provider/product_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final productListProvider =
-    FutureProvider.autoDispose<List<ProductListModel>>((ref) async {
+    FutureProvider.autoDispose<List<ProductModel>>((ref) async {
   final repository = ref.watch(productRepositoryProvider);
 
   // 제품 리스트 GET

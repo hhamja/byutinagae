@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'detail_product_model.dart';
+part of 'product_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,19 +14,24 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-DetailProductModel _$DetailProductModelFromJson(Map<String, dynamic> json) {
-  return _DetailProductModel.fromJson(json);
+ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
+  return _ProductListModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DetailProductModel {
-  String get id => throw _privateConstructorUsedError; // 제품 사진
+mixin _$ProductModel {
+// Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
+// 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
+  String get id => throw _privateConstructorUsedError; // 카테고리
+  String get category => throw _privateConstructorUsedError; // 썸네일 이미지 url
+  @ImageUrlConverter()
+  String get thumbnailImage =>
+      throw _privateConstructorUsedError; // 풀 사이즈 이미지 url
   @ImageUrlConverter()
   String get fullImage => throw _privateConstructorUsedError; // 브랜드 명
   String get brand => throw _privateConstructorUsedError; // 제품 이름
   String get productName => throw _privateConstructorUsedError; // 제품 용량
-  String get volume => throw _privateConstructorUsedError; // 성분 리스트
-  List<String> get ingredient => throw _privateConstructorUsedError; // 가격
+  String get volume => throw _privateConstructorUsedError; // 가격
   @PriceConverter()
   String get price => throw _privateConstructorUsedError; // 제품 등록 시간
   @TimeStampConverter()
@@ -34,31 +39,32 @@ mixin _$DetailProductModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DetailProductModelCopyWith<DetailProductModel> get copyWith =>
+  $ProductModelCopyWith<ProductModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DetailProductModelCopyWith<$Res> {
-  factory $DetailProductModelCopyWith(
-          DetailProductModel value, $Res Function(DetailProductModel) then) =
-      _$DetailProductModelCopyWithImpl<$Res, DetailProductModel>;
+abstract class $ProductModelCopyWith<$Res> {
+  factory $ProductModelCopyWith(
+          ProductModel value, $Res Function(ProductModel) then) =
+      _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
   $Res call(
       {String id,
+      String category,
+      @ImageUrlConverter() String thumbnailImage,
       @ImageUrlConverter() String fullImage,
       String brand,
       String productName,
       String volume,
-      List<String> ingredient,
       @PriceConverter() String price,
       @TimeStampConverter() Timestamp createdAt});
 }
 
 /// @nodoc
-class _$DetailProductModelCopyWithImpl<$Res, $Val extends DetailProductModel>
-    implements $DetailProductModelCopyWith<$Res> {
-  _$DetailProductModelCopyWithImpl(this._value, this._then);
+class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
+    implements $ProductModelCopyWith<$Res> {
+  _$ProductModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -69,11 +75,12 @@ class _$DetailProductModelCopyWithImpl<$Res, $Val extends DetailProductModel>
   @override
   $Res call({
     Object? id = null,
+    Object? category = null,
+    Object? thumbnailImage = null,
     Object? fullImage = null,
     Object? brand = null,
     Object? productName = null,
     Object? volume = null,
-    Object? ingredient = null,
     Object? price = null,
     Object? createdAt = null,
   }) {
@@ -81,6 +88,14 @@ class _$DetailProductModelCopyWithImpl<$Res, $Val extends DetailProductModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnailImage: null == thumbnailImage
+          ? _value.thumbnailImage
+          : thumbnailImage // ignore: cast_nullable_to_non_nullable
               as String,
       fullImage: null == fullImage
           ? _value.fullImage
@@ -98,10 +113,6 @@ class _$DetailProductModelCopyWithImpl<$Res, $Val extends DetailProductModel>
           ? _value.volume
           : volume // ignore: cast_nullable_to_non_nullable
               as String,
-      ingredient: null == ingredient
-          ? _value.ingredient
-          : ingredient // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -115,48 +126,58 @@ class _$DetailProductModelCopyWithImpl<$Res, $Val extends DetailProductModel>
 }
 
 /// @nodoc
-abstract class _$$_DetailProductModelCopyWith<$Res>
-    implements $DetailProductModelCopyWith<$Res> {
-  factory _$$_DetailProductModelCopyWith(_$_DetailProductModel value,
-          $Res Function(_$_DetailProductModel) then) =
-      __$$_DetailProductModelCopyWithImpl<$Res>;
+abstract class _$$_ProductListModelCopyWith<$Res>
+    implements $ProductModelCopyWith<$Res> {
+  factory _$$_ProductListModelCopyWith(
+          _$_ProductListModel value, $Res Function(_$_ProductListModel) then) =
+      __$$_ProductListModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String id,
+      String category,
+      @ImageUrlConverter() String thumbnailImage,
       @ImageUrlConverter() String fullImage,
       String brand,
       String productName,
       String volume,
-      List<String> ingredient,
       @PriceConverter() String price,
       @TimeStampConverter() Timestamp createdAt});
 }
 
 /// @nodoc
-class __$$_DetailProductModelCopyWithImpl<$Res>
-    extends _$DetailProductModelCopyWithImpl<$Res, _$_DetailProductModel>
-    implements _$$_DetailProductModelCopyWith<$Res> {
-  __$$_DetailProductModelCopyWithImpl(
-      _$_DetailProductModel _value, $Res Function(_$_DetailProductModel) _then)
+class __$$_ProductListModelCopyWithImpl<$Res>
+    extends _$ProductModelCopyWithImpl<$Res, _$_ProductListModel>
+    implements _$$_ProductListModelCopyWith<$Res> {
+  __$$_ProductListModelCopyWithImpl(
+      _$_ProductListModel _value, $Res Function(_$_ProductListModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
+    Object? category = null,
+    Object? thumbnailImage = null,
     Object? fullImage = null,
     Object? brand = null,
     Object? productName = null,
     Object? volume = null,
-    Object? ingredient = null,
     Object? price = null,
     Object? createdAt = null,
   }) {
-    return _then(_$_DetailProductModel(
+    return _then(_$_ProductListModel(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnailImage: null == thumbnailImage
+          ? _value.thumbnailImage
+          : thumbnailImage // ignore: cast_nullable_to_non_nullable
               as String,
       fullImage: null == fullImage
           ? _value.fullImage
@@ -174,10 +195,6 @@ class __$$_DetailProductModelCopyWithImpl<$Res>
           ? _value.volume
           : volume // ignore: cast_nullable_to_non_nullable
               as String,
-      ingredient: null == ingredient
-          ? _value._ingredient
-          : ingredient // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -192,25 +209,34 @@ class __$$_DetailProductModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DetailProductModel implements _DetailProductModel {
-  const _$_DetailProductModel(
+class _$_ProductListModel implements _ProductListModel {
+  const _$_ProductListModel(
       {this.id = '',
+      required this.category,
+      @ImageUrlConverter() required this.thumbnailImage,
       @ImageUrlConverter() required this.fullImage,
       required this.brand,
       required this.productName,
       required this.volume,
-      required final List<String> ingredient,
       @PriceConverter() required this.price,
-      @TimeStampConverter() required this.createdAt})
-      : _ingredient = ingredient;
+      @TimeStampConverter() required this.createdAt});
 
-  factory _$_DetailProductModel.fromJson(Map<String, dynamic> json) =>
-      _$$_DetailProductModelFromJson(json);
+  factory _$_ProductListModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ProductListModelFromJson(json);
 
+// Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
+// 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
   @override
   @JsonKey()
   final String id;
-// 제품 사진
+// 카테고리
+  @override
+  final String category;
+// 썸네일 이미지 url
+  @override
+  @ImageUrlConverter()
+  final String thumbnailImage;
+// 풀 사이즈 이미지 url
   @override
   @ImageUrlConverter()
   final String fullImage;
@@ -223,16 +249,6 @@ class _$_DetailProductModel implements _DetailProductModel {
 // 제품 용량
   @override
   final String volume;
-// 성분 리스트
-  final List<String> _ingredient;
-// 성분 리스트
-  @override
-  List<String> get ingredient {
-    if (_ingredient is EqualUnmodifiableListView) return _ingredient;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ingredient);
-  }
-
 // 가격
   @override
   @PriceConverter()
@@ -244,23 +260,25 @@ class _$_DetailProductModel implements _DetailProductModel {
 
   @override
   String toString() {
-    return 'DetailProductModel(id: $id, fullImage: $fullImage, brand: $brand, productName: $productName, volume: $volume, ingredient: $ingredient, price: $price, createdAt: $createdAt)';
+    return 'ProductModel(id: $id, category: $category, thumbnailImage: $thumbnailImage, fullImage: $fullImage, brand: $brand, productName: $productName, volume: $volume, price: $price, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DetailProductModel &&
+            other is _$_ProductListModel &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.thumbnailImage, thumbnailImage) ||
+                other.thumbnailImage == thumbnailImage) &&
             (identical(other.fullImage, fullImage) ||
                 other.fullImage == fullImage) &&
             (identical(other.brand, brand) || other.brand == brand) &&
             (identical(other.productName, productName) ||
                 other.productName == productName) &&
             (identical(other.volume, volume) || other.volume == volume) &&
-            const DeepCollectionEquality()
-                .equals(other._ingredient, _ingredient) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -268,50 +286,48 @@ class _$_DetailProductModel implements _DetailProductModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      fullImage,
-      brand,
-      productName,
-      volume,
-      const DeepCollectionEquality().hash(_ingredient),
-      price,
-      createdAt);
+  int get hashCode => Object.hash(runtimeType, id, category, thumbnailImage,
+      fullImage, brand, productName, volume, price, createdAt);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DetailProductModelCopyWith<_$_DetailProductModel> get copyWith =>
-      __$$_DetailProductModelCopyWithImpl<_$_DetailProductModel>(
-          this, _$identity);
+  _$$_ProductListModelCopyWith<_$_ProductListModel> get copyWith =>
+      __$$_ProductListModelCopyWithImpl<_$_ProductListModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DetailProductModelToJson(
+    return _$$_ProductListModelToJson(
       this,
     );
   }
 }
 
-abstract class _DetailProductModel implements DetailProductModel {
-  const factory _DetailProductModel(
+abstract class _ProductListModel implements ProductModel {
+  const factory _ProductListModel(
           {final String id,
+          required final String category,
+          @ImageUrlConverter() required final String thumbnailImage,
           @ImageUrlConverter() required final String fullImage,
           required final String brand,
           required final String productName,
           required final String volume,
-          required final List<String> ingredient,
           @PriceConverter() required final String price,
           @TimeStampConverter() required final Timestamp createdAt}) =
-      _$_DetailProductModel;
+      _$_ProductListModel;
 
-  factory _DetailProductModel.fromJson(Map<String, dynamic> json) =
-      _$_DetailProductModel.fromJson;
+  factory _ProductListModel.fromJson(Map<String, dynamic> json) =
+      _$_ProductListModel.fromJson;
 
-  @override
+  @override // Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
+// 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
   String get id;
-  @override // 제품 사진
+  @override // 카테고리
+  String get category;
+  @override // 썸네일 이미지 url
+  @ImageUrlConverter()
+  String get thumbnailImage;
+  @override // 풀 사이즈 이미지 url
   @ImageUrlConverter()
   String get fullImage;
   @override // 브랜드 명
@@ -320,8 +336,6 @@ abstract class _DetailProductModel implements DetailProductModel {
   String get productName;
   @override // 제품 용량
   String get volume;
-  @override // 성분 리스트
-  List<String> get ingredient;
   @override // 가격
   @PriceConverter()
   String get price;
@@ -330,6 +344,6 @@ abstract class _DetailProductModel implements DetailProductModel {
   Timestamp get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$_DetailProductModelCopyWith<_$_DetailProductModel> get copyWith =>
+  _$$_ProductListModelCopyWith<_$_ProductListModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
