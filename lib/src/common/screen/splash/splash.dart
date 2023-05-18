@@ -23,15 +23,12 @@ class SplashPage extends StatelessWidget {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const TermsPolicyAgreementPage(),
-          ),
+              builder: (context) => const TermsPolicyAgreementPage()),
         );
       } else {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-            builder: (context) => const TabbarPage(),
-          ),
+          MaterialPageRoute(builder: (context) => const TabbarPage()),
         );
       }
     }

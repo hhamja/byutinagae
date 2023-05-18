@@ -17,7 +17,7 @@ class AppNoticePage extends StatelessWidget {
             ListTile(
               contentPadding: EdgeInsets.all(0),
               title: Text(
-                '반려동물 피부를 위한 성분분석 앱,\n$APP_NAME 출시!',
+                '모든 반려동물 뷰티의 시작, $APP_NAME 출시',
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -25,7 +25,7 @@ class AppNoticePage extends StatelessWidget {
               splashColor: Colors.transparent,
               hoverColor: Colors.transparent,
               subtitle: Padding(
-                padding: EdgeInsets.only(top: 3.0),
+                padding: EdgeInsets.only(top: 8.0),
                 child: Text(
                   '2023. 06. 01',
                   style: TextStyle(
@@ -37,7 +37,7 @@ class AppNoticePage extends StatelessWidget {
             ),
             Divider(
               thickness: 1,
-              color: GREY_COLOR,
+              color: LIGHT_GREY_COLOR,
             )
           ],
         ));
