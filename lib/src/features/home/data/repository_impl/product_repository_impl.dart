@@ -11,25 +11,19 @@ class ProductRepositoryImplement implements ProductRepository {
   final ingredientModificationRef = FirebaseFirestore.instance
       .collection(FirebaseConstant.ingredientModificationRef);
 
-  // 제품 리스트 받기
+  // 페이지네이션 쿼리
   @override
-  Future<List<ProductModel>> getProductList() async {
-    final List<ProductModel> productList = [];
-
-    final QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await productRef.get();
-
-    for (var doc in querySnapshot.docs) {
-      ProductModel model = ProductModel.fromJson(doc.data());
-      model = model.copyWith(id: doc.id);
-      productList.add(model);
-    }
-    return productList;
+  queryPaginatedProductList() {
+    return productRef.withConverter<ProductModel>(
+      fromFirestore: (snapshot, _) =>
+          ProductModel.fromJson(snapshot.data() as Map<String, dynamic>),
+      toFirestore: (model, _) => model.toJson(),
+    );
   }
 
   // 특정 제품의 성분 정보 받기
   @override
-  Future<List<IngredientModel>> getIngredientList(String id) async {
+  Future<List<IngredientModel>> fetchIngredientList(String id) async {
     final List<IngredientModel> ingredients = [];
 
     final QuerySnapshot<Map<String, dynamic>> querySnapshot = await productRef
@@ -49,7 +43,7 @@ class ProductRepositoryImplement implements ProductRepository {
 
   // 성분 수정 요청
   @override
-  Future addIngredientModificationRequest(
+  Future requestIngredientModification(
       IngredientModificationRequestModel model) async {
     return ingredientModificationRef.add(model.toJson());
   }

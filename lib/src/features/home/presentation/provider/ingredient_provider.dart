@@ -8,6 +8,6 @@ final ingredientListProvider = FutureProvider.autoDispose
     .family<List<IngredientModel>, String>((ref, id) async {
   final repository = ref.watch(productRepositoryProvider);
   // 특정 제품의 성분 정보 받기
-  final ingredientList = await repository.getIngredientList(id);
+  final ingredientList = await repository.fetchIngredientList(id);
   return ingredientList;
 });

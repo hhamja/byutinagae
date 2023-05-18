@@ -206,7 +206,7 @@ class _IngredientListPageState extends State<IngredientListPage> {
                           // 서버에 성분 수정 요청 데이터 저장
                           ref
                               .read(productRepositoryProvider)
-                              .addIngredientModificationRequest(
+                              .requestIngredientModification(
                                   ingredientModificationRequestModel);
                           // 감사 다이얼로그 띄우기
                           showDialog(
