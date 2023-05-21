@@ -15,8 +15,12 @@ class ProductRepositoryImplement implements ProductRepository {
   @override
   queryPaginatedProductList() {
     return productRef.withConverter<ProductModel>(
-      fromFirestore: (snapshot, _) =>
-          ProductModel.fromJson(snapshot.data() as Map<String, dynamic>),
+      fromFirestore: (snapshot, _) {
+        ProductModel model =
+            ProductModel.fromJson(snapshot.data() as Map<String, dynamic>);
+        model = model.copyWith(id: snapshot.id);
+        return model;
+      },
       toFirestore: (model, _) => model.toJson(),
     );
   }
@@ -25,17 +29,17 @@ class ProductRepositoryImplement implements ProductRepository {
   @override
   Future<List<IngredientModel>> fetchIngredientList(String id) async {
     final List<IngredientModel> ingredients = [];
-
-    final QuerySnapshot<Map<String, dynamic>> querySnapshot = await productRef
-        .doc(id)
-        .collection(FirebaseConstant.ingredientRef)
+    final ref = productRef.doc(id).collection(FirebaseConstant.ingredientRef);
+    final QuerySnapshot<Map<String, dynamic>> querySnapshot = await ref
         // 오름차순 ex) 1,2,3,4,5
         .orderBy("index", descending: false)
         .get();
 
-    for (var doc in querySnapshot.docs) {
-      final IngredientModel model = IngredientModel.fromJson(doc.data());
-      ingredients.add(model);
+    if (ref.path.isNotEmpty) {
+      for (var doc in querySnapshot.docs) {
+        final IngredientModel model = IngredientModel.fromJson(doc.data());
+        ingredients.add(model);
+      }
     }
 
     return ingredients;

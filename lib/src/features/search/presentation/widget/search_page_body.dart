@@ -2,7 +2,7 @@ import 'package:byutinagae/src/common/widget/text_form_field/custom_text_form_fi
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
-import 'package:byutinagae/src/features/search/presentation/provider/search_provider.dart';
+import 'package:byutinagae/src/features/search/presentation/provider/recent_search_provider.dart';
 import 'package:byutinagae/src/features/search/presentation/screen/search_result_page.dart';
 
 class SearchPageBody extends ConsumerStatefulWidget {
@@ -32,6 +32,7 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
   @override
   Widget build(BuildContext context) {
     final List<String> searchList = ref.watch(recentSearchListProvider);
+
     return SingleChildScrollView(
       controller: scrollController,
       child: Column(
@@ -66,19 +67,17 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
                     maxLength: 50,
                     focusNode: focusNode,
                     controller: textController,
+
                     // 확인 버튼 클릭시
                     onFieldSubmitted: textController.text == ''
                         ? null
                         : (value) async {
                             // 결과 페이지로 이동
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SearchResultPage(
-                                  query: textController.text,
-                                ),
-                              ),
-                            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SearchResultPage(
+                                        inputText: textController.text)));
                             // 최근검색어에 추가
                             ref
                                 .read(recentSearchListProvider.notifier)
@@ -147,13 +146,10 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
                     onTap: () async {
                       // 결과 페이지로 이동
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SearchResultPage(
-                            query: searchList[index],
-                          ),
-                        ),
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SearchResultPage(
+                                  inputText: searchList[index])));
                     },
                     title: Text(
                       searchList[index],

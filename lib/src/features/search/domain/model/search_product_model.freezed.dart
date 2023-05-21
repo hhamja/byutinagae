@@ -20,17 +20,20 @@ SearchProductModel _$SearchProductModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SearchProductModel {
+// Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
+// 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
   String get id => throw _privateConstructorUsedError; // 카테고리
-  String get category => throw _privateConstructorUsedError; // 제품 사진
+  String get category => throw _privateConstructorUsedError; // 썸네일 이미지 url
   @ImageUrlConverter()
-  String get thumbnailImage => throw _privateConstructorUsedError; // 브랜드 명
+  String get thumbnailImage =>
+      throw _privateConstructorUsedError; // 풀 사이즈 이미지 url
+  @ImageUrlConverter()
+  String get fullImage => throw _privateConstructorUsedError; // 브랜드 명
   String get brand => throw _privateConstructorUsedError; // 제품 이름
   String get productName => throw _privateConstructorUsedError; // 제품 용량
   String get volume => throw _privateConstructorUsedError; // 가격
   @PriceConverter()
-  String get price => throw _privateConstructorUsedError; // 제품 등록 시간
-  @TimeStampConverter()
-  Timestamp get createdAt => throw _privateConstructorUsedError;
+  String get price => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,11 +51,11 @@ abstract class $SearchProductModelCopyWith<$Res> {
       {String id,
       String category,
       @ImageUrlConverter() String thumbnailImage,
+      @ImageUrlConverter() String fullImage,
       String brand,
       String productName,
       String volume,
-      @PriceConverter() String price,
-      @TimeStampConverter() Timestamp createdAt});
+      @PriceConverter() String price});
 }
 
 /// @nodoc
@@ -71,11 +74,11 @@ class _$SearchProductModelCopyWithImpl<$Res, $Val extends SearchProductModel>
     Object? id = null,
     Object? category = null,
     Object? thumbnailImage = null,
+    Object? fullImage = null,
     Object? brand = null,
     Object? productName = null,
     Object? volume = null,
     Object? price = null,
-    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -89,6 +92,10 @@ class _$SearchProductModelCopyWithImpl<$Res, $Val extends SearchProductModel>
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
           : thumbnailImage // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullImage: null == fullImage
+          ? _value.fullImage
+          : fullImage // ignore: cast_nullable_to_non_nullable
               as String,
       brand: null == brand
           ? _value.brand
@@ -106,10 +113,6 @@ class _$SearchProductModelCopyWithImpl<$Res, $Val extends SearchProductModel>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
     ) as $Val);
   }
 }
@@ -126,11 +129,11 @@ abstract class _$$_SearchProductModelCopyWith<$Res>
       {String id,
       String category,
       @ImageUrlConverter() String thumbnailImage,
+      @ImageUrlConverter() String fullImage,
       String brand,
       String productName,
       String volume,
-      @PriceConverter() String price,
-      @TimeStampConverter() Timestamp createdAt});
+      @PriceConverter() String price});
 }
 
 /// @nodoc
@@ -147,11 +150,11 @@ class __$$_SearchProductModelCopyWithImpl<$Res>
     Object? id = null,
     Object? category = null,
     Object? thumbnailImage = null,
+    Object? fullImage = null,
     Object? brand = null,
     Object? productName = null,
     Object? volume = null,
     Object? price = null,
-    Object? createdAt = null,
   }) {
     return _then(_$_SearchProductModel(
       id: null == id
@@ -165,6 +168,10 @@ class __$$_SearchProductModelCopyWithImpl<$Res>
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
           : thumbnailImage // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullImage: null == fullImage
+          ? _value.fullImage
+          : fullImage // ignore: cast_nullable_to_non_nullable
               as String,
       brand: null == brand
           ? _value.brand
@@ -182,10 +189,6 @@ class __$$_SearchProductModelCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
     ));
   }
 }
@@ -197,25 +200,31 @@ class _$_SearchProductModel implements _SearchProductModel {
       {this.id = '',
       required this.category,
       @ImageUrlConverter() required this.thumbnailImage,
+      @ImageUrlConverter() required this.fullImage,
       required this.brand,
       required this.productName,
       required this.volume,
-      @PriceConverter() required this.price,
-      @TimeStampConverter() required this.createdAt});
+      @PriceConverter() required this.price});
 
   factory _$_SearchProductModel.fromJson(Map<String, dynamic> json) =>
       _$$_SearchProductModelFromJson(json);
 
+// Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
+// 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
   @override
   @JsonKey()
   final String id;
 // 카테고리
   @override
   final String category;
-// 제품 사진
+// 썸네일 이미지 url
   @override
   @ImageUrlConverter()
   final String thumbnailImage;
+// 풀 사이즈 이미지 url
+  @override
+  @ImageUrlConverter()
+  final String fullImage;
 // 브랜드 명
   @override
   final String brand;
@@ -229,14 +238,10 @@ class _$_SearchProductModel implements _SearchProductModel {
   @override
   @PriceConverter()
   final String price;
-// 제품 등록 시간
-  @override
-  @TimeStampConverter()
-  final Timestamp createdAt;
 
   @override
   String toString() {
-    return 'SearchProductModel(id: $id, category: $category, thumbnailImage: $thumbnailImage, brand: $brand, productName: $productName, volume: $volume, price: $price, createdAt: $createdAt)';
+    return 'SearchProductModel(id: $id, category: $category, thumbnailImage: $thumbnailImage, fullImage: $fullImage, brand: $brand, productName: $productName, volume: $volume, price: $price)';
   }
 
   @override
@@ -249,19 +254,19 @@ class _$_SearchProductModel implements _SearchProductModel {
                 other.category == category) &&
             (identical(other.thumbnailImage, thumbnailImage) ||
                 other.thumbnailImage == thumbnailImage) &&
+            (identical(other.fullImage, fullImage) ||
+                other.fullImage == fullImage) &&
             (identical(other.brand, brand) || other.brand == brand) &&
             (identical(other.productName, productName) ||
                 other.productName == productName) &&
             (identical(other.volume, volume) || other.volume == volume) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            (identical(other.price, price) || other.price == price));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, category, thumbnailImage,
-      brand, productName, volume, price, createdAt);
+      fullImage, brand, productName, volume, price);
 
   @JsonKey(ignore: true)
   @override
@@ -280,26 +285,29 @@ class _$_SearchProductModel implements _SearchProductModel {
 
 abstract class _SearchProductModel implements SearchProductModel {
   const factory _SearchProductModel(
-          {final String id,
-          required final String category,
-          @ImageUrlConverter() required final String thumbnailImage,
-          required final String brand,
-          required final String productName,
-          required final String volume,
-          @PriceConverter() required final String price,
-          @TimeStampConverter() required final Timestamp createdAt}) =
-      _$_SearchProductModel;
+      {final String id,
+      required final String category,
+      @ImageUrlConverter() required final String thumbnailImage,
+      @ImageUrlConverter() required final String fullImage,
+      required final String brand,
+      required final String productName,
+      required final String volume,
+      @PriceConverter() required final String price}) = _$_SearchProductModel;
 
   factory _SearchProductModel.fromJson(Map<String, dynamic> json) =
       _$_SearchProductModel.fromJson;
 
-  @override
+  @override // Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
+// 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
   String get id;
   @override // 카테고리
   String get category;
-  @override // 제품 사진
+  @override // 썸네일 이미지 url
   @ImageUrlConverter()
   String get thumbnailImage;
+  @override // 풀 사이즈 이미지 url
+  @ImageUrlConverter()
+  String get fullImage;
   @override // 브랜드 명
   String get brand;
   @override // 제품 이름
@@ -309,9 +317,6 @@ abstract class _SearchProductModel implements SearchProductModel {
   @override // 가격
   @PriceConverter()
   String get price;
-  @override // 제품 등록 시간
-  @TimeStampConverter()
-  Timestamp get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_SearchProductModelCopyWith<_$_SearchProductModel> get copyWith =>

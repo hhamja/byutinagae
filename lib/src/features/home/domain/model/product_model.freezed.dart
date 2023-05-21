@@ -22,6 +22,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 mixin _$ProductModel {
 // Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
 // 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
+  @DocumentIdConverter()
   String get id => throw _privateConstructorUsedError; // 카테고리
   String get category => throw _privateConstructorUsedError; // 썸네일 이미지 url
   @ImageUrlConverter()
@@ -50,7 +51,7 @@ abstract class $ProductModelCopyWith<$Res> {
       _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
   $Res call(
-      {String id,
+      {@DocumentIdConverter() String id,
       String category,
       @ImageUrlConverter() String thumbnailImage,
       @ImageUrlConverter() String fullImage,
@@ -134,7 +135,7 @@ abstract class _$$_ProductListModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {@DocumentIdConverter() String id,
       String category,
       @ImageUrlConverter() String thumbnailImage,
       @ImageUrlConverter() String fullImage,
@@ -211,7 +212,7 @@ class __$$_ProductListModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ProductListModel implements _ProductListModel {
   const _$_ProductListModel(
-      {this.id = '',
+      {@DocumentIdConverter() this.id = '',
       required this.category,
       @ImageUrlConverter() required this.thumbnailImage,
       @ImageUrlConverter() required this.fullImage,
@@ -228,6 +229,7 @@ class _$_ProductListModel implements _ProductListModel {
 // 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
   @override
   @JsonKey()
+  @DocumentIdConverter()
   final String id;
 // 카테고리
   @override
@@ -305,7 +307,7 @@ class _$_ProductListModel implements _ProductListModel {
 
 abstract class _ProductListModel implements ProductModel {
   const factory _ProductListModel(
-          {final String id,
+          {@DocumentIdConverter() final String id,
           required final String category,
           @ImageUrlConverter() required final String thumbnailImage,
           @ImageUrlConverter() required final String fullImage,
@@ -321,6 +323,7 @@ abstract class _ProductListModel implements ProductModel {
 
   @override // Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
 // 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
+  @DocumentIdConverter()
   String get id;
   @override // 카테고리
   String get category;

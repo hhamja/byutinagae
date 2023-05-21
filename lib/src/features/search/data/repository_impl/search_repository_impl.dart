@@ -1,14 +1,45 @@
+import 'package:algolia/algolia.dart';
+import 'package:byutinagae/src/config/constant/firebase_constant.dart';
 import 'package:byutinagae/src/features/search/domain/model/search_product_model.dart';
 import 'package:byutinagae/src/features/search/domain/repository/search_repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class SearchRepositoryImplement implements SearchRepository {
-  // 제품 검색하기
-  @override
-  Future<List<SearchProductModel>> searchProduct(String query) async {
-    final List<SearchProductModel> searchProductList = [];
+  final productRef =
+      FirebaseFirestore.instance.collection(FirebaseConstant.productRef);
 
-    return searchProductList;
+  // 페이지네이션 다음 데이터 가져오기
+  @override
+  Future fetchMoreSearchList(String searchInput) async {}
+
+  // 페이지네이션 적용, 검색 결과 가져오기
+  @override
+  Future<List<SearchProductModel>> fetchSearchProductList(
+      String searchInput, int currentPage) async {
+    final List<SearchProductModel> productList = [];
+    // 한번에 받을 데이터 최대 개수
+    const int limit = 10;
+    final Algolia algolia = Algolia.init(
+        applicationId: dotenv.env['ALGOLIA_APP_ID']!,
+        apiKey: dotenv.env['ALGOLIA_API_KEY']!);
+    // 페이지네이션 쿼리
+    final AlgoliaQuery query = algolia.instance
+        .index('product')
+        .search(searchInput)
+        .setHitsPerPage(limit)
+        .setPage(currentPage);
+
+    final AlgoliaQuerySnapshot querySnapshot = await query.getObjects();
+    // 데이터 추가 반복문
+    for (var snapshot in querySnapshot.hits) {
+      SearchProductModel model = SearchProductModel.fromJson(snapshot.data);
+      model = model.copyWith(id: snapshot.objectID);
+      productList.add(model);
+    }
+
+    return productList;
   }
 
   // 최근 검색어 로컬에 List로 저장

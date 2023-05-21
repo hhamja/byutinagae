@@ -13,11 +13,11 @@ _$_SearchProductModel _$$_SearchProductModelFromJson(
       category: json['category'] as String,
       thumbnailImage:
           const ImageUrlConverter().fromJson(json['thumbnailImage'] as List),
+      fullImage: const ImageUrlConverter().fromJson(json['fullImage'] as List),
       brand: json['brand'] as String,
       productName: json['productName'] as String,
       volume: json['volume'] as String,
       price: const PriceConverter().fromJson(json['price'] as int),
-      createdAt: const TimeStampConverter().fromJson(json['createdAt']),
     );
 
 Map<String, dynamic> _$$_SearchProductModelToJson(
@@ -27,9 +27,9 @@ Map<String, dynamic> _$$_SearchProductModelToJson(
       'category': instance.category,
       'thumbnailImage':
           const ImageUrlConverter().toJson(instance.thumbnailImage),
+      'fullImage': const ImageUrlConverter().toJson(instance.fullImage),
       'brand': instance.brand,
       'productName': instance.productName,
       'volume': instance.volume,
       'price': const PriceConverter().toJson(instance.price),
-      'createdAt': const TimeStampConverter().toJson(instance.createdAt),
     };

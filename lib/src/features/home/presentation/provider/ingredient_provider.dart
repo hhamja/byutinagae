@@ -1,6 +1,6 @@
 // 특정 제품의 성분정보 받는 FutureProvider
 import 'package:byutinagae/src/features/home/domain/model/ingredient_model.dart';
-import 'package:byutinagae/src/features/home/domain/provider/product_provider.dart';
+import 'package:byutinagae/src/features/home/domain/provider/product_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 성분 리스트 프로바이더

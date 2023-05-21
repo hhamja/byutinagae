@@ -70,6 +70,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       maxLengthEnforcement: MaxLengthEnforcement.enforced,
       onChanged: widget.onChanged,
       onTap: widget.onTap,
+      
       onFieldSubmitted: widget.onFieldSubmitted,
     );
   }

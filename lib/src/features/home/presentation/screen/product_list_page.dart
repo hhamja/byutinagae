@@ -18,79 +18,64 @@ class ProductListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ScrollController controller = ScrollController();
-    final paginatedProductList = ref.read(paginatedProductListProvider);
+    final paginatedProductList = ref.watch(paginatedProductListProvider);
 
     return DefaultLayout(
       leading: const CustomBackButton(),
-      title: const Text(
-        '샴푸',
-      ),
+      title: const Text('샴푸'),
       actions: [
         InkWell(
-          onTap: () async {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const PushSearchPage()),
-            );
-          },
-          child: const Padding(
-            padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
-            child: Icon(CupertinoIcons.search),
-          ),
-        ),
+            onTap: () async {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PushSearchPage()));
+            },
+            child: const Padding(
+                padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+                child: Icon(CupertinoIcons.search))),
       ],
       body: FirestoreQueryBuilder<ProductModel>(
         query: paginatedProductList,
         builder: (context, snapshot, child) {
           if (snapshot.isFetching) {
+            // 로딩
             return const CustomCircularLoading();
-          }
-          if (snapshot.hasError) {
+          } else if (snapshot.hasError) {
+            // 에러
             return Text('error ${snapshot.error}');
+          } else if (snapshot.docs.isEmpty) {
+            // 빈 데이터인 경우
+            return const Text('텅비었개');
           }
           return ListView.separated(
             itemCount: snapshot.docs.length,
             controller: controller,
             separatorBuilder: (context, index) => const Divider(
-              color: DEEP_LIGHT_GREY_COLOR,
-              thickness: 1,
-              height: 0,
-            ),
+                color: DEEP_LIGHT_GREY_COLOR, thickness: 1, height: 0),
             itemBuilder: (context, index) {
+              final ProductModel productModel = snapshot.docs[index].data();
               // fetch 묶음 데이터의 마지막 순번인 경우 값 더 받기
               if (snapshot.hasMore && (index + 1 == snapshot.docs.length)) {
                 snapshot.fetchMore();
               }
-
-              final ProductModel productModel = snapshot.docs[index].data();
-
               return ProductListItem(
-                onTap: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          DetailProductPage(productModel: productModel),
-                    ),
-                  );
-                },
-                brand: productModel.brand,
-                photoUrl: productModel.thumbnailImage,
-                price: productModel.price,
-                productName: productModel.productName,
-                volume: productModel.volume,
-              );
+                  onTap: () async {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                DetailProductPage(productModel: productModel)));
+                  },
+                  brand: productModel.brand,
+                  photoUrl: productModel.thumbnailImage,
+                  price: productModel.price,
+                  productName: productModel.productName,
+                  volume: productModel.volume);
             },
           );
         },
       ),
     );
-
-    //    asyncProductList.when(
-    //     error: (error, stackTrace) => const CustomErrorData(),
-    //     loading: () => const (),
-    //     data: (productList) =>
-
-    // );
   }
 }

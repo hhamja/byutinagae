@@ -4,7 +4,7 @@ import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart
 import 'package:byutinagae/src/common/widget/text_button/custom_outline_text_button.dart';
 import 'package:byutinagae/src/features/home/domain/model/ingredient_model.dart';
 import 'package:byutinagae/src/features/home/domain/model/ingredient_modification_request_model.dart';
-import 'package:byutinagae/src/features/home/domain/provider/product_provider.dart';
+import 'package:byutinagae/src/features/home/domain/provider/product_repository_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
