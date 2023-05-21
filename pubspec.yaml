@@ -24,6 +24,8 @@ dependencies:
   webview_flutter: ^4.2.0
   flutter_launcher_icons: ^0.13.1
   firebase_ui_firestore: ^1.5.1
+  algolia: ^1.1.2
+  flutter_dotenv: ^5.0.2
   
 
 dev_dependencies:
@@ -40,6 +42,8 @@ flutter:
     - assets/
     - assets/app_icon/
     - assets/images/
+    - assets/config/
+    
     
   fonts:
     # 스포카 한 산스

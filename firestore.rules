@@ -27,7 +27,7 @@ service cloud.firestore {
 		// ---------------------------------------------------------
 		// Allow admins to read and write all documents
 		match /{document=**} {
-			allow read, write: if hasAnyRole(["ADMIN", "OWNER"]);
+			allow read, write;
 		}
 		
 		// Rowy: Allow signed in users to read Rowy configuration and admins to write
