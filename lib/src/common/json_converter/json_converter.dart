@@ -48,7 +48,16 @@ class TimeStampConverter implements JsonConverter<Timestamp, dynamic> {
   const TimeStampConverter();
 
   @override
-  Timestamp fromJson(dynamic json) => json as Timestamp;
+  Timestamp fromJson(dynamic json) {
+    if (json is int) {
+      // 검색해서 데이터를 넣을 때
+      // 알골리에서는 타임스탬프 타입이 int로 저장되기 떄문
+      return Timestamp.fromMillisecondsSinceEpoch(json);
+    } else {
+      // 파이어스토어에서 값을 받는 경우
+      return json as Timestamp;
+    }
+  }
 
   @override
   dynamic toJson(Timestamp timestamp) => timestamp;

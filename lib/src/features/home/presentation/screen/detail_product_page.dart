@@ -2,20 +2,20 @@ import 'package:byutinagae/src/common/widget/async_value/custom_error_data.dart'
 import 'package:byutinagae/src/common/widget/default_layout/default_layout.dart';
 import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart';
 import 'package:byutinagae/src/common/widget/loading/circular_loading.dart';
+import 'package:byutinagae/src/features/home/domain/model/product_model.dart';
 import 'package:byutinagae/src/features/home/presentation/provider/ingredient_provider.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:byutinagae/src/features/home/presentation/widget/appbar_search_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/features/home/presentation/screen/ingredient_list_page.dart';
-import 'package:byutinagae/src/features/search/presentation/screen/push_search_page.dart';
-import 'package:byutinagae/src/features/home/presentation/widget/detail_product_box.dart';
-import 'package:byutinagae/src/features/home/presentation/widget/product_ingredient.dart';
+import 'package:byutinagae/src/features/home/presentation/widget/detail_product_page/detail_product_box.dart';
+import 'package:byutinagae/src/features/home/presentation/widget/detail_product_page/product_ingredient.dart';
 
 class DetailProductPage extends ConsumerWidget {
   // 타입 지정을 하지 않은 이유
   // 검색 제품 리스트랑 그냥 탑생 제품 리스트 타입이 다르기 때문이다.
-  final productModel;
+  final ProductModel productModel;
   const DetailProductPage({required this.productModel, super.key});
 
   @override
@@ -25,22 +25,7 @@ class DetailProductPage extends ConsumerWidget {
 
     return DefaultLayout(
       leading: const CustomBackButton(),
-      actions: [
-        InkWell(
-          onTap: () async {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const PushSearchPage(),
-              ),
-            );
-          },
-          child: const Padding(
-            padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
-            child: Icon(CupertinoIcons.search),
-          ),
-        ),
-      ],
+      actions: const [AppbarSearchIcon()],
       body: asyncIngredientList.when(
         error: (error, stackTrace) => const CustomErrorData(),
         loading: () => const CustomCircularLoading(),

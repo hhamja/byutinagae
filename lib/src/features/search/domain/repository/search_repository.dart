@@ -1,12 +1,11 @@
+import 'package:byutinagae/src/features/home/domain/model/product_model.dart';
+
 // 검색 리파지토리 인터페이스
-
-import 'package:byutinagae/src/features/search/domain/model/search_product_model.dart';
-
 abstract class SearchRepository {
   Future fetchMoreSearchList(String searchInput);
 
   // 페이지네이션 적용하여 검색결과 가져오기
-  Future<List<SearchProductModel>> fetchSearchProductList(
+  Future<List<ProductModel>> fetchSearchProductList(
       String query, int currentPage);
 
   // 최근 검색어 로컬에 List로 저장

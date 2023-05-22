@@ -9,7 +9,7 @@ import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/config/constant/app_name.dart';
 import 'package:byutinagae/src/features/request/presentation/screen/product_add_request_page.dart';
 import 'package:byutinagae/src/features/home/presentation/screen/detail_product_page.dart';
-import 'package:byutinagae/src/features/home/presentation/widget/product_list_item.dart';
+import 'package:byutinagae/src/features/home/presentation/widget/product_list_page/product_list_item.dart';
 
 class SearchResultPage extends ConsumerStatefulWidget {
   final String inputText;

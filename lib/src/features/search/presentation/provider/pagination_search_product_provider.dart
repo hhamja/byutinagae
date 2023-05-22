@@ -1,17 +1,17 @@
-import 'package:byutinagae/src/features/search/domain/model/search_product_model.dart';
+import 'package:byutinagae/src/features/home/domain/model/product_model.dart';
 import 'package:byutinagae/src/features/search/domain/provider/search_repository_provider.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 검색 제품 상태관리 프로바이더
 final paginatedSearchListProvider = StateNotifierProvider.autoDispose.family<
-    PaginatedSearchListNotifier, AsyncValue<List<SearchProductModel>>, String>(
+    PaginatedSearchListNotifier, AsyncValue<List<ProductModel>>, String>(
   (ref, query) => PaginatedSearchListNotifier(ref, query),
 );
 
 // 페이지네이션 적용 검색 결과 비동기 상태관리
 class PaginatedSearchListNotifier
-    extends StateNotifier<AsyncValue<List<SearchProductModel>>> {
+    extends StateNotifier<AsyncValue<List<ProductModel>>> {
   final Ref ref;
   final String query;
 

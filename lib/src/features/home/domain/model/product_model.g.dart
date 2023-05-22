@@ -8,10 +8,7 @@ part of 'product_model.dart';
 
 _$_ProductListModel _$$_ProductListModelFromJson(Map<String, dynamic> json) =>
     _$_ProductListModel(
-      id: json['id'] == null
-          ? ''
-          : const DocumentIdConverter()
-              .fromJson(json['id'] as DocumentSnapshot<Object>),
+      id: json['id'] as String? ?? '',
       category: json['category'] as String,
       thumbnailImage:
           const ImageUrlConverter().fromJson(json['thumbnailImage'] as List),
@@ -25,7 +22,7 @@ _$_ProductListModel _$$_ProductListModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_ProductListModelToJson(_$_ProductListModel instance) =>
     <String, dynamic>{
-      'id': const DocumentIdConverter().toJson(instance.id),
+      'id': instance.id,
       'category': instance.category,
       'thumbnailImage':
           const ImageUrlConverter().toJson(instance.thumbnailImage),
