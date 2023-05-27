@@ -43,12 +43,11 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
             '어떤 제품을 찾으시나요?',
             style: TextStyle(
               fontSize: 25,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 21),
+          const SizedBox(height: 34),
           Container(
-            height: 50,
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
@@ -67,7 +66,6 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
                     maxLength: 50,
                     focusNode: focusNode,
                     controller: textController,
-
                     // 확인 버튼 클릭시
                     onFieldSubmitted: textController.text == ''
                         ? null
@@ -114,7 +112,7 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
                 '최근검색어',
                 style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               searchList.isNotEmpty
@@ -136,6 +134,7 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
                   : const SizedBox.shrink(),
             ],
           ),
+          const SizedBox(height: 8),
           searchList.isNotEmpty
               ? ListView.builder(
                   shrinkWrap: true,

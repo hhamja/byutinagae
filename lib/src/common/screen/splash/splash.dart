@@ -48,7 +48,7 @@ class SplashPage extends StatelessWidget {
                 children: [
                   const SizedBox(height: 150),
                   Image.asset(
-                    'assets/app_icon/byutinagae.png',
+                    'assets/app_logo/byutinagae.png',
                     width: 150,
                     height: 350,
                   ),

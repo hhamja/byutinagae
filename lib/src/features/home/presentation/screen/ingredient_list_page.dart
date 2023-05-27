@@ -9,9 +9,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
-import 'package:byutinagae/src/features/home/presentation/widget/ingredient_composition.dart';
-import 'package:byutinagae/src/features/home/presentation/widget/ingredient_info_bottom_sheet.dart';
-import 'package:byutinagae/src/features/home/presentation/widget/ingredient_list_tile.dart';
+import 'package:byutinagae/src/features/home/presentation/widget/ingredient_list_page/ingredient_composition.dart';
+import 'package:byutinagae/src/features/home/presentation/widget/ingredient_list_page/ingredient_info_bottom_sheet.dart';
+import 'package:byutinagae/src/features/home/presentation/widget/ingredient_list_page/ingredient_list_tile.dart';
 
 class IngredientListPage extends StatefulWidget {
   final List<IngredientModel> ingredientList;
@@ -157,7 +157,9 @@ class _IngredientListPageState extends State<IngredientListPage> {
                       }
                       return IngredientListTile(
                         color: color,
-                        ewg: widget.ingredientList[index].ewg,
+                        ewg: widget.ingredientList[index].ewg == '0'
+                            ? '-'
+                            : widget.ingredientList[index].ewg,
                         name: widget.ingredientList[index].korName,
                         purpose: widget.ingredientList[index].blendingPurpose,
                       );
@@ -215,8 +217,11 @@ class _IngredientListPageState extends State<IngredientListPage> {
                               Future.delayed(const Duration(seconds: 2), () {
                                 Navigator.of(context).pop();
                               });
-                              return const AlertDialog(
-                                title: Text(
+                              return AlertDialog(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                title: const Text(
                                   '소중한 의견 고마워요 :)',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(fontSize: 18),

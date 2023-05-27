@@ -40,7 +40,7 @@ class _TermsPolicyAgreementPageState extends State<TermsPolicyAgreementPage> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Image.asset(
-              'assets/app_icon/byutinagae.png',
+              'assets/app_logo/byutinagae.png',
               width: 150,
             ),
             const SizedBox(height: 55),

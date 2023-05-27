@@ -54,9 +54,9 @@ class _TabbarPageState extends State<TabbarPage>
       ),
       bottomNavigationBar: BottomNavigationBar(
         // 선택 O 탭바 아이템 스타일
-        selectedItemColor: TEXT_COLOR,
+        selectedItemColor: PRIMARY_COLOR,
         // 선택 X 탭바 아이템 스타일
-        unselectedItemColor: DARK_GREY_COLOR,
+        unselectedItemColor: GREY_COLOR,
         type: BottomNavigationBarType.fixed,
         onTap: (int index) => controller.animateTo(index),
         backgroundColor: WHITE_COLOR,

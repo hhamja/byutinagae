@@ -35,8 +35,7 @@ class SearchRepositoryImplement implements SearchRepository {
     final AlgoliaQuerySnapshot querySnapshot = await query.getObjects();
     // 데이터 추가 반복문
     for (var snapshot in querySnapshot.hits) {
-      ProductModel model = ProductModel.fromJson(snapshot.data);
-      model = model.copyWith(id: snapshot.objectID);
+      final ProductModel model = ProductModel.fromJson(snapshot.data);
       productList.add(model);
     }
 

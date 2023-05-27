@@ -35,10 +35,26 @@ class _ProductAddRequestBodyState extends State<ProductAddRequestBody> {
           '찾으시는 제품이 없나요?',
           style: TextStyle(
             fontSize: 25,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 21),
+        const SizedBox(height: 13),
+        const Text(
+          '추가되었으면 하는 제품을',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 13),
+        const Text(
+          '아래에 입력해주세요.',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 55),
         Container(
           decoration: BoxDecoration(
             border: Border(
@@ -78,42 +94,58 @@ class _ProductAddRequestBodyState extends State<ProductAddRequestBody> {
             ],
           ),
         ),
-        const SizedBox(height: 55),
-        Consumer(
-          builder: (context, ref, child) => CustomFilledTextButton(
-            w: MediaQuery.of(context).size.width,
-            h: 50,
-            content: '$APP_NAME 팀에게 보내기',
-            onPressed: textController.text != ''
-                ? () async {
-                    final model = RequestAdditionalProductModel(
-                      content: textController.text.trim(),
-                      createdAt: Timestamp.now(),
-                      uid: '',
-                    );
-                    ref
-                        .read(requestProductRepositoryProvider)
-                        .addRequestProduct(model);
-                    textController.clear();
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        Future.delayed(const Duration(seconds: 2), () {
-                          Navigator.of(context).pop();
-                        });
-                        return const AlertDialog(
-                          title: Text(
-                            '소중한 의견 고마워요 :)',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        );
-                      },
-                    );
-                  }
-                : null,
-            backgroundColor:
-                textController.text != '' ? PRIMARY_COLOR : LIGHT_GREY_COLOR,
+        Expanded(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Consumer(
+              builder: (context, ref, child) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 21.0),
+                child: CustomFilledTextButton(
+                  w: MediaQuery.of(context).size.width,
+                  h: 55,
+                  content: '$APP_NAME 팀에게 보내기',
+                  onPressed: textController.text != ''
+                      ? () async {
+                          final model = RequestAdditionalProductModel(
+                            content: textController.text.trim(),
+                            createdAt: Timestamp.now(),
+                            uid: '',
+                          );
+                          ref
+                              .read(requestProductRepositoryProvider)
+                              .addRequestProduct(model);
+                          setState(() => textController.clear());
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              Future.delayed(const Duration(seconds: 2), () {
+                                Navigator.of(context).pop();
+                              });
+                              return AlertDialog(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                title: const Text(
+                                  '소중한 의견 고마워요 :)',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              );
+                            },
+                          );
+                        }
+                      : null,
+                  backgroundColor: textController.text != ''
+                      ? PRIMARY_COLOR
+                      : LIGHT_GREY_COLOR.withOpacity(0.5),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
         ),
       ],

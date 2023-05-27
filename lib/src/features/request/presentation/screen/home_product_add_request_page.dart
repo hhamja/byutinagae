@@ -1,16 +1,18 @@
 import 'package:byutinagae/src/common/widget/default_layout/default_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:byutinagae/src/features/request/presentation/widget/product_add_requst_body.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeProductAddRequestPage extends StatefulWidget {
+class HomeProductAddRequestPage extends ConsumerStatefulWidget {
   const HomeProductAddRequestPage({super.key});
 
   @override
-  State<HomeProductAddRequestPage> createState() =>
+  ConsumerState<ConsumerStatefulWidget> createState() =>
       _HomeProductAddRequestPageState();
 }
 
-class _HomeProductAddRequestPageState extends State<HomeProductAddRequestPage> {
+class _HomeProductAddRequestPageState
+    extends ConsumerState<HomeProductAddRequestPage> {
   @override
   Widget build(BuildContext context) {
     return const DefaultLayout(

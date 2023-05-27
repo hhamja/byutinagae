@@ -6,6 +6,7 @@ class DefaultLayout extends StatelessWidget {
   final Widget? leading;
   final Widget? bottomNavigationBar;
   final List<Widget>? actions;
+  final PreferredSizeWidget? bottom;
 
   const DefaultLayout({
     required this.body,
@@ -14,6 +15,7 @@ class DefaultLayout extends StatelessWidget {
     this.actions,
     this.bottomNavigationBar,
     Key? key,
+    this.bottom,
   }) : super(key: key);
 
   @override
@@ -29,6 +31,7 @@ class DefaultLayout extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: leading,
         ),
+        bottom: bottom,
         actions: actions,
       ),
       body: Padding(

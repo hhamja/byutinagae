@@ -8,9 +8,7 @@ part 'product_model.g.dart';
 @freezed
 class ProductModel with _$ProductModel {
   const factory ProductModel({
-    // Default 이유 : DB에 id가 없어서 파이어스토어 document ID를 넣기 위함
-    // 따라서 데이터를 받을 떄 copyWith로 받은 문서 id를 업데이트
-    @Default('') String id,
+    required String id,
     // 카테고리
     required String category,
     // 썸네일 이미지 url
@@ -32,6 +30,7 @@ class ProductModel with _$ProductModel {
     // 나중에 총 수/ 리뷰 수 = 평균 평점 구현
     // required int totalScore,
     // required int reivewCount,
+    // required int ranking,
   }) = _ProductListModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>

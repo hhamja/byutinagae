@@ -8,7 +8,7 @@ part of 'product_model.dart';
 
 _$_ProductListModel _$$_ProductListModelFromJson(Map<String, dynamic> json) =>
     _$_ProductListModel(
-      id: json['id'] as String? ?? '',
+      id: json['id'] as String,
       category: json['category'] as String,
       thumbnailImage:
           const ImageUrlConverter().fromJson(json['thumbnailImage'] as List),

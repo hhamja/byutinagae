@@ -31,13 +31,11 @@ class ProductListItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 100,
-              width: 100,
-              child: Image.network(
-                photoUrl,
-                fit: BoxFit.cover,
-              ),
-            ),
+                height: 100,
+                width: 100,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image.network(photoUrl))),
             const SizedBox(width: 16),
             Expanded(
               child: Column(
@@ -58,6 +56,7 @@ class ProductListItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 16,
+                      fontWeight: FontWeight.w500,
                       color: TEXT_COLOR,
                     ),
                   ),

@@ -23,7 +23,7 @@ class SearchResultPage extends ConsumerStatefulWidget {
 
 class _SearchResultPageState extends ConsumerState<SearchResultPage> {
   final ScrollController _scrollController = ScrollController();
-  int currentPage = 0;
+  int _currentPage = 0;
 
   @override
   void initState() {
@@ -42,11 +42,11 @@ class _SearchResultPageState extends ConsumerState<SearchResultPage> {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 300) {
       // 스크롤이 마지막에 도달하면 추가 데이터를 가져옴
-      final int nextPage = currentPage + 1;
+      final int nextPage = _currentPage + 1;
       await ref
           .read(paginatedSearchListProvider(widget.inputText).notifier)
           .fetchAdditionalProducts(nextPage);
-      setState(() => currentPage = nextPage);
+      setState(() => _currentPage = nextPage);
     }
   }
 
@@ -59,7 +59,7 @@ class _SearchResultPageState extends ConsumerState<SearchResultPage> {
       leading: const CustomBackButton(),
       title: Text('${widget.inputText} 검색결과'),
       body: paginatedSearchProductList.when(
-        error: (e, _) => const Text('에러'),
+        error: (e, _) => const SizedBox.shrink(),
         loading: () => const CustomCircularLoading(),
         data: (searchProductList) => searchProductList.isNotEmpty
             ? ListView.separated(
