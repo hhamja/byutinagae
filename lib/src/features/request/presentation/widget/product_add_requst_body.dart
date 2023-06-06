@@ -9,25 +9,32 @@ import 'package:byutinagae/src/config/constant/app_color.dart';
 import 'package:byutinagae/src/config/constant/app_name.dart';
 
 class ProductAddRequestBody extends StatefulWidget {
-  const ProductAddRequestBody({super.key});
+  final FocusNode focusNode;
+  const ProductAddRequestBody({super.key, required this.focusNode});
 
   @override
   State<ProductAddRequestBody> createState() => _ProductAddRequestBodyState();
 }
 
 class _ProductAddRequestBodyState extends State<ProductAddRequestBody> {
-  final FocusNode focusNode = FocusNode();
   final TextEditingController textController = TextEditingController();
 
   @override
+  void initState() {
+    widget.focusNode.requestFocus();
+    super.initState();
+  }
+
+  @override
   void dispose() {
-    focusNode.dispose();
+    widget.focusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 34),
@@ -71,10 +78,10 @@ class _ProductAddRequestBodyState extends State<ProductAddRequestBody> {
                 child: CustomTextFormField(
                   maxLine: null,
                   maxLength: 100,
-                  focusNode: focusNode,
+                  focusNode: widget.focusNode,
                   controller: textController,
                   onChanged: (value) => setState(() => value),
-                  onTap: () => setState(() => focusNode.requestFocus()),
+                  onTap: () => setState(() => widget.focusNode.requestFocus()),
                   hintText: '요청할 제품 명을 입력해주세요 :)',
                 ),
               ),

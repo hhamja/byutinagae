@@ -14,7 +14,7 @@ final tabLabelProvider = Provider.family((ref, category) {
     return const ['치약'];
   } else if (category == TopProductCategory.deodorant) {
     // 탈취제 제품 리스트 페이지 탭바
-    return const ['탈취제'];
+    return const ['향수/탈취'];
   } else {
     // 클린뷰티템 탭바
     return const ['샴푸', '린스/컨디셔너', '미스트', '보습제', '탈취제', '치약'];

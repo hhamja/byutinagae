@@ -57,9 +57,22 @@ enum WashCategory {
 
   // 린스, 컨디셔너
   rinse,
+
+  // 기타 워시
+  cleaner,
 }
 
+// 탈취제
 enum DeodorantCategory {
   // 탈취제
   deodorant,
+}
+
+// 세재
+enum DetergentCategory {
+  // 섬유세재
+  textileDetergent,
+
+  // 주방세재
+  kitchenDetergent
 }

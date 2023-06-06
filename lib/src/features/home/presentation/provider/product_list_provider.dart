@@ -2,13 +2,6 @@ import 'package:byutinagae/src/features/home/domain/enum/product_category.dart';
 import 'package:byutinagae/src/features/home/domain/provider/product_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// // 대분류 카테고리의 전체 제품 받기
-// final allCategoryProductsProvider =
-//     Provider.family((ref, TopProductCategory productCategory) {
-//   final repository = ref.watch(productRepositoryProvider);
-//   return repository.queryAllCategoryProducts(productCategory);
-// });
-
 // 특정 카테고리의 제품 리스트 받기
 final categoryProductsProvider = Provider.family((ref, String category) {
   final repository = ref.watch(productRepositoryProvider);

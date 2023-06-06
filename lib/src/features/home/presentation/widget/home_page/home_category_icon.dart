@@ -1,5 +1,4 @@
 import 'package:byutinagae/src/features/home/domain/enum/product_category.dart';
-import 'package:byutinagae/src/features/home/presentation/screen/category_product_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
 
@@ -7,25 +6,20 @@ class HomeCategoryIcon extends StatelessWidget {
   final String categoryText;
   final String iconPath;
   final TopProductCategory productCategory;
+  final void Function() onTap;
 
   const HomeCategoryIcon({
     required this.categoryText,
     required this.iconPath,
     required this.productCategory,
     super.key,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () async {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CategoryProductListPage(
-                    productCategory: productCategory,
-                    categoryTitle: categoryText)));
-      },
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0.0),
         child: Column(

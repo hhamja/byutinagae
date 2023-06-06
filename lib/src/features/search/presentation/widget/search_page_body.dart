@@ -6,26 +6,27 @@ import 'package:byutinagae/src/features/search/presentation/provider/recent_sear
 import 'package:byutinagae/src/features/search/presentation/screen/search_result_page.dart';
 
 class SearchPageBody extends ConsumerStatefulWidget {
-  const SearchPageBody({super.key});
+  final FocusNode focusNode;
+  const SearchPageBody({required this.focusNode, super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SearchPageBodyState();
 }
 
 class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
-  final FocusNode focusNode = FocusNode();
   final TextEditingController textController = TextEditingController();
   final ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
+    widget.focusNode.requestFocus();
     ref.read(recentSearchListProvider.notifier).getSearchList();
   }
 
   @override
   void dispose() {
-    focusNode.dispose();
+    widget.focusNode.dispose();
     super.dispose();
   }
 
@@ -64,7 +65,7 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
                   child: CustomTextFormField(
                     maxLine: 1,
                     maxLength: 50,
-                    focusNode: focusNode,
+                    focusNode: widget.focusNode,
                     controller: textController,
                     // 확인 버튼 클릭시
                     onFieldSubmitted: textController.text == ''
@@ -74,8 +75,8 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SearchResultPage(
-                                        inputText: textController.text)));
+                                    builder: (context) =>
+                                        SearchResultPage(inputText: value)));
                             // 최근검색어에 추가
                             ref
                                 .read(recentSearchListProvider.notifier)
@@ -84,7 +85,7 @@ class _SearchPageBodyState extends ConsumerState<SearchPageBody> {
                             textController.text = '';
                           },
                     onChanged: (value) => setState(() => value),
-                    onTap: () => setState(() => focusNode.requestFocus()),
+                    onTap: () async => setState(() =>widget. focusNode.requestFocus()),
                     hintText: '검색어를 입력해주세요',
                   ),
                 ),

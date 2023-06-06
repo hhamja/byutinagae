@@ -12,11 +12,17 @@ class PushSearchPage extends ConsumerStatefulWidget {
 }
 
 class _PushSearchPageState extends ConsumerState<PushSearchPage> {
+  final FocusNode focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
-    return const DefaultLayout(
-      leading: CustomBackButton(),
-      body: SearchPageBody(),
+    return GestureDetector(
+      onTap: () async => focusNode.unfocus(),
+      onVerticalDragDown: (_) async => focusNode.unfocus(),
+      child: DefaultLayout(
+        leading: const CustomBackButton(),
+        body: SearchPageBody(focusNode: focusNode),
+      ),
     );
   }
 }

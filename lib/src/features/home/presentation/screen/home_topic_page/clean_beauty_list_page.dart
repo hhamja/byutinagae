@@ -1,13 +1,12 @@
 import 'package:byutinagae/src/common/widget/default_layout/default_layout.dart';
 import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart';
-import 'package:byutinagae/src/common/widget/loading/circular_loading.dart';
+import 'package:byutinagae/src/config/constant/category_constant.dart';
 import 'package:byutinagae/src/features/home/domain/enum/product_category.dart';
-import 'package:byutinagae/src/features/home/presentation/provider/category_tabbar_label_provider.dart';
 import 'package:byutinagae/src/features/home/presentation/provider/clean_beauty_provider.dart';
-import 'package:byutinagae/src/features/home/presentation/screen/detail_product_page.dart';
+
 import 'package:byutinagae/src/features/home/presentation/widget/appbar_search_icon.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/product_list_page/category_tabbar.dart';
-import 'package:byutinagae/src/features/home/presentation/widget/product_list_page/product_list_item.dart';
+import 'package:byutinagae/src/features/home/presentation/widget/product_list_page/topic_product_list_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,9 +21,6 @@ class CleanBeautyListPage extends ConsumerStatefulWidget {
 
 class _CleanBeautyListPageState extends ConsumerState<CleanBeautyListPage>
     with TickerProviderStateMixin {
-  final ScrollController _scrollController = ScrollController();
-
-  late final List<String> _tabLabelList;
   late TabController _tabController;
   late PageController _pageController;
 
@@ -45,8 +41,9 @@ class _CleanBeautyListPageState extends ConsumerState<CleanBeautyListPage>
   @override
   void initState() {
     super.initState();
-    _tabLabelList = ref.read(tabLabelProvider(null));
-    _tabController = TabController(length: _tabLabelList.length, vsync: this);
+
+    _tabController =
+        TabController(length: CategoryConstant.labelList.length, vsync: this);
     _pageController = PageController(initialPage: _currentIndex);
     _pageController.addListener(_pageChange);
   }
@@ -61,12 +58,9 @@ class _CleanBeautyListPageState extends ConsumerState<CleanBeautyListPage>
 
   @override
   Widget build(BuildContext context) {
-    final cleanBeautyProducts = ref.watch(categoryCleanBeautyProductsProvider(
-        AllProductLine.values[_currentIndex]));
-
     // 4개로 나뉭진 카테고리에 따라 탭바랑 상위 title도 다르게 구성하기
     return DefaultTabController(
-      length: AllProductLine.values.length,
+      length: TopProductCategory.values.length,
       child: DefaultLayout(
         leading: const CustomBackButton(),
         title: const Text('뷰티나개 선정 클린뷰티템'),
@@ -77,39 +71,23 @@ class _CleanBeautyListPageState extends ConsumerState<CleanBeautyListPage>
             CategoryTabbar(
               ontap: _handleTabChange,
               tabController: _tabController,
-              tabLabelList: _tabLabelList,
+              tabLabelList: CategoryConstant.labelList,
             ),
             Expanded(
-              child: PageView.builder(
+              child: PageView(
+                scrollDirection: Axis.horizontal,
                 controller: _pageController,
-                padEnds: true,
-                itemCount: _tabLabelList.length,
                 onPageChanged: (index) async {
                   setState(() {
                     _currentIndex = index;
                     _tabController.index = index;
                   });
                 },
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, pageIndex) => cleanBeautyProducts.when(
-                    data: (list) => ListView.builder(
-                        itemCount: list.length,
-                        controller: _scrollController,
-                        itemBuilder: (context, index) => ProductListItem(
-                            onTap: () async {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DetailProductPage(
-                                          productModel: list[index])));
-                            },
-                            brand: list[index].brand,
-                            photoUrl: list[index].thumbnailImage,
-                            price: list[index].price,
-                            productName: list[index].productName,
-                            volume: list[index].volume)),
-                    error: (e, _) => const SizedBox.shrink(),
-                    loading: () => const CustomCircularLoading()),
+                children: TopProductCategory.values
+                    .map((e) => TopicProductListBody(
+                        provider: ref.watch(categoryCleanBeautyProductsProvider(
+                            AllProductLine.shampoo))))
+                    .toList(),
               ),
             ),
           ],

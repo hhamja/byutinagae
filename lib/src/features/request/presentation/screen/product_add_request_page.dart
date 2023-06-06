@@ -11,11 +11,17 @@ class ProductAddRequestPage extends StatefulWidget {
 }
 
 class _ProductAddRequestPageState extends State<ProductAddRequestPage> {
+  final FocusNode focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
-    return const DefaultLayout(
-      leading: CustomBackButton(),
-      body: ProductAddRequestBody(),
+    return GestureDetector(
+      onTap: () async => focusNode.unfocus(),
+      onVerticalDragDown: (_) async => focusNode.unfocus(),
+      child: DefaultLayout(
+        leading: const CustomBackButton(),
+        body: ProductAddRequestBody(focusNode: focusNode),
+      ),
     );
   }
 }

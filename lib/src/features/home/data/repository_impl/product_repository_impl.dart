@@ -34,7 +34,7 @@ class ProductRepositoryImplement implements ProductRepository {
     }
 
     return productRef
-        .where('category', whereIn: categoryQueryList)
+        .where('topCategory', whereIn: categoryQueryList)
         .withConverter<ProductModel>(
           fromFirestore: (snapshot, _) {
             final ProductModel model =
@@ -47,9 +47,9 @@ class ProductRepositoryImplement implements ProductRepository {
 
   // 카테고리에서 특정 제품 라인 받는 페이지네이션 쿼리
   @override
-  queryCategoryProducts(String category) {
+  queryCategoryProducts(String middleCategory) {
     return productRef
-        .where('category', isEqualTo: category)
+        .where('middleCategory', isEqualTo: middleCategory)
         .withConverter<ProductModel>(
           fromFirestore: (snapshot, _) {
             final ProductModel model =

@@ -1,15 +1,13 @@
 // ignore_for_file: constant_identifier_names
 
-// 글자색
 import 'package:flutter/material.dart';
 
 const Color TEXT_COLOR = Color(0xFF222222);
 
-// 브랜드 컬러
-const Color PRIMARY_COLOR = Color(0xFF35BB89);
-// const Color SECONDARY_COLOR = Color(0xFFCDFBE4);
-// const Color SECONDARY_COLOR = Color(0xFFD5EADD);
-const Color SECONDARY_COLOR = Color(0xFFBBE6C4);
+// 메인 색
+const Color PRIMARY_COLOR = Color(0xFF89CFF0);
+// 서브 색
+const Color SECONDARY_COLOR = Color(0xFFC0E1EF);
 
 // 검은색
 const Color BLACK_COLOR = Color(0xFF000000);

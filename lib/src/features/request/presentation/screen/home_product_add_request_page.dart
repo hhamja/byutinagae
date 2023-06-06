@@ -15,8 +15,14 @@ class _HomeProductAddRequestPageState
     extends ConsumerState<HomeProductAddRequestPage> {
   @override
   Widget build(BuildContext context) {
-    return const DefaultLayout(
-      body: ProductAddRequestBody(),
+    final FocusNode focusNode = FocusNode();
+
+    return GestureDetector(
+      onTap: () async => focusNode.unfocus(),
+      onVerticalDragDown: (_) async => focusNode.unfocus(),
+      child: DefaultLayout(
+        body: ProductAddRequestBody(focusNode: focusNode),
+      ),
     );
   }
 }

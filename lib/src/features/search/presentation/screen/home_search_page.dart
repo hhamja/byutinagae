@@ -12,10 +12,16 @@ class HomeSearchPage extends ConsumerStatefulWidget {
 }
 
 class _HomeSearchPageState extends ConsumerState<HomeSearchPage> {
+  final FocusNode focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
-    return const DefaultLayout(
-      body: SearchPageBody(),
+    return GestureDetector(
+      onTap: () async => focusNode.unfocus(),
+      onVerticalDragDown: (_) async => focusNode.unfocus(),
+      child: DefaultLayout(
+        body: SearchPageBody(focusNode: focusNode),
+      ),
     );
   }
 }
