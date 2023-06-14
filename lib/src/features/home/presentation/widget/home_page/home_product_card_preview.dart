@@ -1,10 +1,10 @@
-import 'package:byutinagae/src/features/home/domain/model/product_model.dart';
+import 'package:byutinagae/src/features/home/domain/model/product_list_model.dart';
 import 'package:byutinagae/src/features/home/presentation/screen/detail_product_page.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/home_page/product_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeProductCardPreview extends StatelessWidget {
-  final List<ProductModel> productList;
+  final List<ProductListModel> productList;
 
   const HomeProductCardPreview({super.key, required this.productList});
 
@@ -31,7 +31,7 @@ class HomeProductCardPreview extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailProductPage(
-                        productModel: productList[0],
+                        id: productList[0].id,
                       ),
                     ),
                   ),
@@ -49,7 +49,7 @@ class HomeProductCardPreview extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailProductPage(
-                        productModel: productList[1],
+                        id: productList[1].id,
                       ),
                     ),
                   ),
@@ -67,7 +67,7 @@ class HomeProductCardPreview extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailProductPage(
-                        productModel: productList[2],
+                        id: productList[2].id,
                       ),
                     ),
                   ),
@@ -91,7 +91,7 @@ class HomeProductCardPreview extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailProductPage(
-                        productModel: productList[3],
+                        id: productList[3].id,
                       ),
                     ),
                   ),
@@ -109,7 +109,7 @@ class HomeProductCardPreview extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailProductPage(
-                        productModel: productList[4],
+                        id: productList[4].id,
                       ),
                     ),
                   ),
@@ -127,7 +127,7 @@ class HomeProductCardPreview extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailProductPage(
-                        productModel: productList[5],
+                        id: productList[5].id,
                       ),
                     ),
                   ),

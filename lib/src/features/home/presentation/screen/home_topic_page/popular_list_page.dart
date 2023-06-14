@@ -1,7 +1,6 @@
 import 'package:byutinagae/src/common/widget/default_layout/default_layout.dart';
 import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart';
 import 'package:byutinagae/src/config/constant/category_constant.dart';
-import 'package:byutinagae/src/features/home/domain/enum/product_category.dart';
 import 'package:byutinagae/src/features/home/presentation/provider/popular_provider.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/appbar_search_icon.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/product_list_page/category_tabbar.dart';
@@ -40,9 +39,8 @@ class _PopularListPageState extends ConsumerState<PopularListPage>
   @override
   void initState() {
     super.initState();
-
     _tabController =
-        TabController(length: CategoryConstant.labelList.length, vsync: this);
+        TabController(length: Category.topCategoryList.length, vsync: this);
     _pageController = PageController(initialPage: _currentIndex);
     _pageController.addListener(_pageChange);
   }
@@ -59,7 +57,7 @@ class _PopularListPageState extends ConsumerState<PopularListPage>
   Widget build(BuildContext context) {
     // 4개로 나뉭진 카테고리에 따라 탭바랑 상위 title도 다르게 구성하기
     return DefaultTabController(
-      length: TopProductCategory.values.length,
+      length: Category.topCategoryList.length,
       child: DefaultLayout(
         leading: const CustomBackButton(),
         title: const Text('인기 제품'),
@@ -70,7 +68,7 @@ class _PopularListPageState extends ConsumerState<PopularListPage>
             CategoryTabbar(
               ontap: _handleTabChange,
               tabController: _tabController,
-              tabLabelList: CategoryConstant.labelList,
+              tabLabelList: Category.topCategoryList,
             ),
             Expanded(
               child: PageView(
@@ -82,10 +80,14 @@ class _PopularListPageState extends ConsumerState<PopularListPage>
                   });
                 },
                 scrollDirection: Axis.horizontal,
-                children: TopProductCategory.values
-                    .map((e) => TopicProductListBody(
-                        provider: ref.watch(categoryPopularProductsProvider(
-                            AllProductLine.shampoo))))
+                children: Category.topCategoryList
+                    .map(
+                      (e) => TopicProductListBody(
+                        provider: ref.watch(
+                          categoryPopularProductsProvider(e),
+                        ),
+                      ),
+                    )
                     .toList(),
               ),
             ),

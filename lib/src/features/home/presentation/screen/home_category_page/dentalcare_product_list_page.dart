@@ -1,6 +1,7 @@
 import 'package:byutinagae/src/common/widget/default_layout/default_layout.dart';
 import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart';
-import 'package:byutinagae/src/features/home/domain/enum/product_category.dart';
+import 'package:byutinagae/src/config/constant/category_constant.dart';
+
 import 'package:byutinagae/src/features/home/presentation/provider/product_list_provider.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/appbar_search_icon.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/product_list_page/category_product_list_body.dart';
@@ -39,8 +40,8 @@ class _CategoryProductListPageState
   @override
   void initState() {
     super.initState();
-    _tabController =
-        TabController(length: DentalCareCategory.values.length, vsync: this);
+    _tabController = TabController(
+        length: Category.dentalcareCategoryList.length, vsync: this);
     _pageController = PageController(initialPage: _currentIndex);
     _pageController.addListener(_pageChange);
   }
@@ -55,21 +56,17 @@ class _CategoryProductListPageState
 
   @override
   Widget build(BuildContext context) {
-    final provider =
-        ref.watch(categoryProductsProvider(DentalCareCategory.toothpaste.name));
-    // 4개로 나뉭진 카테고리에 따라 탭바랑 상위 title도 다르게 구성하기
     return DefaultLayout(
       leading: const CustomBackButton(),
-      title: const Text('덴탈케어'),
+      title: const Text(Category.dentalcare),
       actions: const [AppbarSearchIcon()],
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CategoryTabbar(
-            ontap: _handleTabChange,
-            tabController: _tabController,
-            tabLabelList: const ['치약'],
-          ),
+              ontap: _handleTabChange,
+              tabController: _tabController,
+              tabLabelList: Category.dentalcareCategoryList),
           Expanded(
             child: PageView(
               controller: _pageController,
@@ -80,9 +77,10 @@ class _CategoryProductListPageState
                   _tabController.index = index;
                 });
               },
-              children: [
-                CategoryProductListBody(query: provider),
-              ],
+              children: Category.dentalcareCategoryList
+                  .map((e) => CategoryProductListBody(
+                      query: ref.watch(categoryProductsProvider(e))))
+                  .toList(),
             ),
           ),
         ],

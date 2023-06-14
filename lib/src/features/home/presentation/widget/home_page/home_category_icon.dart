@@ -1,17 +1,14 @@
-import 'package:byutinagae/src/features/home/domain/enum/product_category.dart';
 import 'package:flutter/material.dart';
 import 'package:byutinagae/src/config/constant/app_color.dart';
 
 class HomeCategoryIcon extends StatelessWidget {
   final String categoryText;
   final String iconPath;
-  final TopProductCategory productCategory;
   final void Function() onTap;
 
   const HomeCategoryIcon({
     required this.categoryText,
     required this.iconPath,
-    required this.productCategory,
     super.key,
     required this.onTap,
   });

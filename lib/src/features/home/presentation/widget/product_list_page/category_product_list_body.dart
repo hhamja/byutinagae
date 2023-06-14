@@ -1,6 +1,6 @@
 import 'package:byutinagae/src/common/widget/empty_data_page.dart/empty_data_page.dart';
 import 'package:byutinagae/src/common/widget/loading/circular_loading.dart';
-import 'package:byutinagae/src/features/home/domain/model/product_model.dart';
+import 'package:byutinagae/src/features/home/domain/model/product_list_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ import 'package:byutinagae/src/features/home/presentation/widget/product_list_pa
 // 파이어스토어 페이지네이션 쿼리로 카테고리별 데이터를 받는 UI 정의
 class CategoryProductListBody extends ConsumerStatefulWidget {
   // 페이지네이션 쿼리타입 또는 futureProvider return List 타입
-  final Query<ProductModel> query;
+  final Query<ProductListModel> query;
 
   const CategoryProductListBody({required this.query, super.key});
 
@@ -51,7 +51,7 @@ class _CategoryProductListBodyState
 
   @override
   Widget build(BuildContext context) {
-    return FirestoreQueryBuilder<ProductModel>(
+    return FirestoreQueryBuilder<ProductListModel>(
       query: widget.query,
       builder: (context, snapshot, child) {
         if (snapshot.isFetching) {
@@ -67,7 +67,7 @@ class _CategoryProductListBodyState
           itemCount: snapshot.docs.length,
           controller: _scrollController,
           itemBuilder: (context, index) {
-            final ProductModel productModel = snapshot.docs[index].data();
+            final ProductListModel productList = snapshot.docs[index].data();
             // fetch 묶음 데이터의 마지막 순번인 경우 값 더 받기
             // if (snapshot.hasMore &&
             //     (index + 1 == snapshot.docs.length)) {
@@ -80,16 +80,19 @@ class _CategoryProductListBodyState
             return ProductListItem(
                 onTap: () async {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              DetailProductPage(productModel: productModel)));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailProductPage(
+                        id: productList.id,
+                      ),
+                    ),
+                  );
                 },
-                brand: productModel.brand,
-                photoUrl: productModel.thumbnailImage,
-                price: productModel.price,
-                productName: productModel.productName,
-                volume: productModel.volume);
+                brand: productList.brand,
+                photoUrl: productList.thumbnailImage,
+                price: productList.price,
+                productName: productList.productName,
+                volume: productList.volume);
           },
         );
       },

@@ -1,7 +1,8 @@
-import 'package:byutinagae/src/features/home/domain/enum/product_category.dart';
+import 'package:byutinagae/src/config/constant/category_constant.dart';
+import 'package:byutinagae/src/features/home/domain/model/detail_product_model.dart';
 import 'package:byutinagae/src/features/home/domain/model/ingredient_model.dart';
 import 'package:byutinagae/src/features/home/domain/model/ingredient_modification_request_model.dart';
-import 'package:byutinagae/src/features/home/domain/model/product_model.dart';
+import 'package:byutinagae/src/features/home/domain/model/product_list_model.dart';
 import 'package:byutinagae/src/config/constant/firebase_constant.dart';
 import 'package:byutinagae/src/features/home/domain/repository/product_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,53 +12,63 @@ class ProductRepositoryImplement implements ProductRepository {
       FirebaseFirestore.instance.collection(FirebaseConstant.productRef);
   final ingredientModificationRef = FirebaseFirestore.instance
       .collection(FirebaseConstant.ingredientModificationRef);
-  final cleanBeautyRef = FirebaseFirestore.instance
-      .collection(FirebaseConstant.cleanBeautyProductRef);
-  final popularProductRef =
-      FirebaseFirestore.instance.collection(FirebaseConstant.popularProductRef);
 
-  // 카레고리의 모든 제품 리스트 받는 페이지네이션 쿼리
+  // // 카레고리의 모든 제품 리스트 받는 페이지네이션 쿼리
+  // @override
+  // queryAllCategoryProducts(TopProductCategory topCategory) {
+  //   List<String> categoryQueryList = [];
+  //   if (topCategory == TopProductCategory.wash) {
+  //     categoryQueryList = [WashCategory.shampoo.name, WashCategory.rinse.name];
+  //   } else if (topCategory == TopProductCategory.skincare) {
+  //     categoryQueryList = [
+  //       SkinCareCategory.mist.name,
+  //       SkinCareCategory.moisturizer.name
+  //     ];
+  //   } else if (topCategory == TopProductCategory.dentalcare) {
+  //     categoryQueryList = [DentalCareCategory.toothpaste.name];
+  //   } else {
+  //     categoryQueryList = [DeodorantCategory.deodorant.name];
+  //   }
+
+  //   return productRef
+  //       .where('topCategory', whereIn: categoryQueryList)
+  //       .withConverter<ProductListModel>(
+  //         fromFirestore: (snapshot, _) {
+  //           final ProductListModel model = ProductListModel.fromJson(
+  //               snapshot.data() as Map<String, dynamic>);
+  //           return model;
+  //         },
+  //         toFirestore: (model, _) => model.toJson(),
+  //       );
+  // }
+
+  // 특정 중분류 제품 리스트 받는 페이지네이션 쿼리
   @override
-  queryAllCategoryProducts(TopProductCategory topCategory) {
-    List<String> categoryQueryList = [];
-    if (topCategory == TopProductCategory.wash) {
-      categoryQueryList = [WashCategory.shampoo.name, WashCategory.rinse.name];
-    } else if (topCategory == TopProductCategory.skincare) {
-      categoryQueryList = [
-        SkinCareCategory.mist.name,
-        SkinCareCategory.moisturizer.name
-      ];
-    } else if (topCategory == TopProductCategory.dentalcare) {
-      categoryQueryList = [DentalCareCategory.toothpaste.name];
-    } else {
-      categoryQueryList = [DeodorantCategory.deodorant.name];
-    }
-
+  queryCategoryProducts(String middleCategory) {
     return productRef
-        .where('topCategory', whereIn: categoryQueryList)
-        .withConverter<ProductModel>(
+        .where('middleCategory', isEqualTo: middleCategory)
+        .withConverter<ProductListModel>(
           fromFirestore: (snapshot, _) {
-            final ProductModel model =
-                ProductModel.fromJson(snapshot.data() as Map<String, dynamic>);
+            final ProductListModel model = ProductListModel.fromJson(
+                snapshot.data() as Map<String, dynamic>);
             return model;
           },
           toFirestore: (model, _) => model.toJson(),
         );
   }
 
-  // 카테고리에서 특정 제품 라인 받는 페이지네이션 쿼리
+  // 제품 세부정보 받기
   @override
-  queryCategoryProducts(String middleCategory) {
-    return productRef
-        .where('middleCategory', isEqualTo: middleCategory)
-        .withConverter<ProductModel>(
-          fromFirestore: (snapshot, _) {
-            final ProductModel model =
-                ProductModel.fromJson(snapshot.data() as Map<String, dynamic>);
-            return model;
-          },
-          toFirestore: (model, _) => model.toJson(),
-        );
+  Future<DetailProductModel> fetchProductDetail(String id) async {
+    final DocumentSnapshot snapshot = await productRef.doc(id).get();
+    if (snapshot.exists) {
+      final Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+      final DetailProductModel detailModel = DetailProductModel.fromJson(data);
+      return detailModel;
+    } else {
+      // 제품 세부 정보가 존재하지 않는 경우, 예외 처리
+      throw Exception('제품을 찾을 수 없습니다.');
+    }
   }
 
   // 특정 제품의 성분 정보 받기
@@ -80,43 +91,38 @@ class ProductRepositoryImplement implements ProductRepository {
     return ingredients;
   }
 
-  // 성분 수정 요청
+  // 특정 대분류의 클린뷰티 제품 리스트 받기
   @override
-  Future requestIngredientModification(
-      IngredientModificationRequestModel model) async {
-    return ingredientModificationRef.add(model.toJson());
-  }
-
-  // 특정 카테고리의 클린뷰티 제품 리스트 받기
-  @override
-  Future<List<ProductModel>> fetchCategoryCleanBeautyProducts(
-      AllProductLine productLine) async {
-    final List<ProductModel> productList = [];
-    final QuerySnapshot querySnapshot = await cleanBeautyRef
-        .where('category', isEqualTo: productLine.name)
+  Future<List<ProductListModel>> fetchTopCategoryCleanBeautyProducts(
+      String topCategory) async {
+    final List<ProductListModel> productList = [];
+    final QuerySnapshot querySnapshot = await productRef
+        .where('topCategory', isEqualTo: topCategory)
+        .where('tag', arrayContains: Category.cleanBeauty)
         .get();
 
     for (var doc in querySnapshot.docs) {
-      final ProductModel model =
-          ProductModel.fromJson(doc.data() as Map<String, dynamic>);
+      final ProductListModel model =
+          ProductListModel.fromJson(doc.data() as Map<String, dynamic>);
       productList.add(model);
     }
 
     return productList;
   }
 
-  // 특정 카테고리의 인기 제품 리스트 받기
+  // 특정 대분류의 인기 제품 리스트 받기
   @override
-  Future<List<ProductModel>> fetchCategoryPopularProducts(
-      AllProductLine productLine) async {
-    final List<ProductModel> productList = [];
-    final QuerySnapshot querySnapshot = await popularProductRef
-        .where('category', isEqualTo: productLine.name)
+  Future<List<ProductListModel>> fetchTopCategoryPopularProducts(
+      String topCategory) async {
+    final List<ProductListModel> productList = [];
+    final QuerySnapshot querySnapshot = await productRef
+        .where('topCategory', isEqualTo: topCategory)
+        .where('tag', arrayContains: Category.cleanBeauty)
         .get();
 
     for (var doc in querySnapshot.docs) {
-      final ProductModel model =
-          ProductModel.fromJson(doc.data() as Map<String, dynamic>);
+      final ProductListModel model =
+          ProductListModel.fromJson(doc.data() as Map<String, dynamic>);
       productList.add(model);
     }
 
@@ -125,46 +131,22 @@ class ProductRepositoryImplement implements ProductRepository {
 
   // Home - 프리뷰 클린뷰티템 받기
   @override
-  Future<List<ProductModel>> fetchPreviewCleanBeautyProducts() async {
-    final List<ProductModel> productList = [];
+  Future<List<ProductListModel>> fetchPreviewCleanBeautyProducts(
+      String topCategory) async {
+    final List<ProductListModel> productList = [];
 
     final List<QuerySnapshot> querySnapshots = await Future.wait([
-      // 샴푸 3개
-      cleanBeautyRef
-          .where('category', isEqualTo: AllProductLine.shampoo.name)
+      productRef
+          .where('topCategory', isEqualTo: topCategory)
+          .where('tag', arrayContains: Category.cleanBeauty)
           .limit(3)
           .get(),
-      // // 린스, 컨디셔너 3개
-      // cleanBeautyRef
-      //     .where('category', isEqualTo: AllProductLine.rinse.name)
-      //     .limit(3)
-      //     .get(),
-      // // 미스트 3개
-      // cleanBeautyRef
-      //     .where('category', isEqualTo: AllProductLine.mist.name)
-      //     .limit(3)
-      //     .get(),
-      // // 보습제 3개
-      // cleanBeautyRef
-      //     .where('category', isEqualTo: AllProductLine.moisturizer.name)
-      //     .limit(3)
-      //     .get(),
-      // // 탈취제 3개
-      // cleanBeautyRef
-      //     .where('category', isEqualTo: AllProductLine.deodorant.name)
-      //     .limit(3)
-      //     .get(),
-      // // 치약 3개
-      // cleanBeautyRef
-      //     .where('category', isEqualTo: AllProductLine.toothpaste.name)
-      //     .limit(3)
-      //     .get(),
     ]);
 
     for (var querySnapshot in querySnapshots) {
       for (var doc in querySnapshot.docs) {
-        final ProductModel model =
-            ProductModel.fromJson(doc.data() as Map<String, dynamic>);
+        final ProductListModel model =
+            ProductListModel.fromJson(doc.data() as Map<String, dynamic>);
         productList.add(model);
       }
     }
@@ -173,16 +155,23 @@ class ProductRepositoryImplement implements ProductRepository {
 
   // Home - 인기템 프리뷰 리스트 받기
   @override
-  Future<List<ProductModel>> fetchPreviewPopularProducts() async {
-    final List<ProductModel> productList = [];
-    final QuerySnapshot querySnapshot = await cleanBeautyRef.limit(6).get();
+  Future<List<ProductListModel>> fetchPreviewPopularProducts() async {
+    final List<ProductListModel> productList = [];
+    final QuerySnapshot querySnapshot = await productRef.limit(6).get();
 
     for (var doc in querySnapshot.docs) {
-      final ProductModel model =
-          ProductModel.fromJson(doc.data() as Map<String, dynamic>);
+      final ProductListModel model =
+          ProductListModel.fromJson(doc.data() as Map<String, dynamic>);
       productList.add(model);
     }
 
     return productList;
+  }
+
+  // 성분 수정 요청
+  @override
+  Future requestIngredientModification(
+      IngredientModificationRequestModel model) async {
+    return ingredientModificationRef.add(model.toJson());
   }
 }

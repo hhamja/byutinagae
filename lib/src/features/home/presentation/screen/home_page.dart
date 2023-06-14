@@ -1,9 +1,8 @@
 import 'package:byutinagae/src/config/constant/category_constant.dart';
-import 'package:byutinagae/src/features/home/domain/enum/product_category.dart';
 import 'package:byutinagae/src/features/home/presentation/provider/clean_beauty_provider.dart';
 import 'package:byutinagae/src/features/home/presentation/provider/popular_provider.dart';
 import 'package:byutinagae/src/features/home/presentation/screen/home_category_page/dentalcare_product_list_page.dart';
-import 'package:byutinagae/src/features/home/presentation/screen/home_category_page/deodorant_product_list_page.dart';
+import 'package:byutinagae/src/features/home/presentation/screen/home_category_page/smellcare_product_list_page.dart';
 import 'package:byutinagae/src/features/home/presentation/screen/home_category_page/skincare_product_list_page.dart';
 import 'package:byutinagae/src/features/home/presentation/screen/home_topic_page/clean_beauty_list_page.dart';
 import 'package:byutinagae/src/features/home/presentation/screen/home_topic_page/popular_list_page.dart';
@@ -49,7 +48,7 @@ class _HomePageState extends ConsumerState<HomePage>
   void initState() {
     super.initState();
     homeTabController =
-        TabController(length: CategoryConstant.labelList.length, vsync: this);
+        TabController(length: Category.topCategoryList.length, vsync: this);
     homePageController = PageController(initialPage: _currentIndex);
     homePageController.addListener(_pageChange);
   }
@@ -64,7 +63,6 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    final previewCleanBeauty = ref.watch(previewCleanBeautyProductsProvider);
     final previewPopular = ref.watch(previewPopularProductsProvider);
 
     return Scaffold(
@@ -87,40 +85,36 @@ class _HomePageState extends ConsumerState<HomePage>
             // 카테고리 아이콘
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               HomeCategoryIcon(
-                  categoryText: CategoryConstant.wash,
+                  categoryText: Category.wash,
                   iconPath: './assets/icons/wash_icon.png',
-                  productCategory: TopProductCategory.wash,
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const WashProductListPage()))),
               HomeCategoryIcon(
-                  categoryText: CategoryConstant.skincare,
+                  categoryText: Category.skincare,
                   iconPath: './assets/icons/skincare_icon.png',
-                  productCategory: TopProductCategory.skincare,
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
                               const SkinCareProductListPage()))),
               HomeCategoryIcon(
-                  categoryText: CategoryConstant.dentalcare,
+                  categoryText: Category.dentalcare,
                   iconPath: './assets/icons/dentalcare_icon.png',
-                  productCategory: TopProductCategory.dentalcare,
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
                               const DentalCareProductListPage()))),
               HomeCategoryIcon(
-                  categoryText: CategoryConstant.deodorant,
+                  categoryText: Category.smellcare,
                   iconPath: './assets/icons/deodorant_icon.png',
-                  productCategory: TopProductCategory.deodorant,
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              const DeodorantProductListPage())))
+                              const SmellcareProductListPage())))
             ]),
 
             const SizedBox(height: 55),
@@ -156,27 +150,33 @@ class _HomePageState extends ConsumerState<HomePage>
                   child: CategoryTabbar(
                     ontap: _handleTabChange,
                     tabController: homeTabController,
-                    tabLabelList: CategoryConstant.labelList,
+                    tabLabelList: Category.topCategoryList,
                   ),
                 ),
               ],
             ),
-            previewCleanBeauty.when(
-                data: (list) => SizedBox(
-                      height: 500,
-                      child: HomePreviewProductList(
-                        controller: homePageController,
-                        productList: list,
-                        onPageChanged: (index) {
-                          setState(() {
-                            _currentIndex = index;
-                            homeTabController.index = index;
-                          });
-                        },
+            SizedBox(
+              height: 500,
+              child: PageView(
+                controller: homePageController,
+                scrollDirection: Axis.horizontal,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                    homeTabController.index = index;
+                  });
+                },
+                children: Category.topCategoryList
+                    .map(
+                      (e) => HomePreviewProductList(
+                        provider:
+                            ref.watch(previewCleanBeautyProductsProvider(e)),
+                        pageIndex: _currentIndex,
                       ),
-                    ),
-                error: (e, _) => const SizedBox.shrink(),
-                loading: () => const SizedBox.shrink())
+                    )
+                    .toList(),
+              ),
+            ),
           ],
         ),
       ),

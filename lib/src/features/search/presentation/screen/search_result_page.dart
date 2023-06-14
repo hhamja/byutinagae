@@ -75,11 +75,13 @@ class _SearchResultPageState extends ConsumerState<SearchResultPage> {
                   itemBuilder: (context, index) => ProductListItem(
                     onTap: () async {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetailProductPage(
-                                    productModel: searchProductList[index],
-                                  )));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailProductPage(
+                            id: searchProductList[index].id,
+                          ),
+                        ),
+                      );
                     },
                     brand: searchProductList[index].brand,
                     photoUrl: searchProductList[index].thumbnailImage,

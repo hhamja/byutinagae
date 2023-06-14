@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product_model.dart';
+part of 'product_list_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -9,10 +9,10 @@ part of 'product_model.dart';
 _$_ProductListModel _$$_ProductListModelFromJson(Map<String, dynamic> json) =>
     _$_ProductListModel(
       id: json['id'] as String,
-      category: json['category'] as String,
+      topCategory: json['topCategory'] as String,
+      middleCategory: json['middleCategory'] as String,
       thumbnailImage:
           const ImageUrlConverter().fromJson(json['thumbnailImage'] as List),
-      fullImage: const ImageUrlConverter().fromJson(json['fullImage'] as List),
       brand: json['brand'] as String,
       productName: json['productName'] as String,
       volume: json['volume'] as String,
@@ -23,10 +23,10 @@ _$_ProductListModel _$$_ProductListModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_ProductListModelToJson(_$_ProductListModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'category': instance.category,
+      'topCategory': instance.topCategory,
+      'middleCategory': instance.middleCategory,
       'thumbnailImage':
           const ImageUrlConverter().toJson(instance.thumbnailImage),
-      'fullImage': const ImageUrlConverter().toJson(instance.fullImage),
       'brand': instance.brand,
       'productName': instance.productName,
       'volume': instance.volume,

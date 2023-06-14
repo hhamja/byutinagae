@@ -10,10 +10,4 @@ class FirebaseConstant {
 
   // 성분 수정 요청
   static const ingredientModificationRef = 'ingredient_modification_request';
-
-  // 뷰티나개가 선정한 클린뷰티템
-  static const cleanBeautyProductRef = 'clean_beauty_product';
-
-  // 인기 제품
-  static const popularProductRef = 'popular_product';
 }

@@ -1,6 +1,6 @@
 import 'package:algolia/algolia.dart';
 import 'package:byutinagae/src/config/constant/firebase_constant.dart';
-import 'package:byutinagae/src/features/home/domain/model/product_model.dart';
+import 'package:byutinagae/src/features/home/domain/model/product_list_model.dart';
 
 import 'package:byutinagae/src/features/search/domain/repository/search_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,9 +17,9 @@ class SearchRepositoryImplement implements SearchRepository {
 
   // 페이지네이션 적용, 검색 결과 가져오기
   @override
-  Future<List<ProductModel>> fetchSearchProductList(
+  Future<List<ProductListModel>> fetchSearchProductList(
       String searchInput, int currentPage) async {
-    final List<ProductModel> productList = [];
+    final List<ProductListModel> productList = [];
     // 한번에 받을 데이터 최대 개수
     const int limit = 10;
     final Algolia algolia = Algolia.init(
@@ -35,7 +35,7 @@ class SearchRepositoryImplement implements SearchRepository {
     final AlgoliaQuerySnapshot querySnapshot = await query.getObjects();
     // 데이터 추가 반복문
     for (var snapshot in querySnapshot.hits) {
-      final ProductModel model = ProductModel.fromJson(snapshot.data);
+      final ProductListModel model = ProductListModel.fromJson(snapshot.data);
       productList.add(model);
     }
 

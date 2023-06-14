@@ -1,6 +1,6 @@
 import 'package:byutinagae/src/common/widget/default_layout/default_layout.dart';
 import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart';
-import 'package:byutinagae/src/features/home/domain/enum/product_category.dart';
+import 'package:byutinagae/src/config/constant/category_constant.dart';
 import 'package:byutinagae/src/features/home/presentation/provider/product_list_provider.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/appbar_search_icon.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/product_list_page/category_product_list_body.dart';
@@ -8,8 +8,8 @@ import 'package:byutinagae/src/features/home/presentation/widget/product_list_pa
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DeodorantProductListPage extends ConsumerStatefulWidget {
-  const DeodorantProductListPage({super.key});
+class SmellcareProductListPage extends ConsumerStatefulWidget {
+  const SmellcareProductListPage({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -17,7 +17,7 @@ class DeodorantProductListPage extends ConsumerStatefulWidget {
 }
 
 class _CategoryProductListPageState
-    extends ConsumerState<DeodorantProductListPage>
+    extends ConsumerState<SmellcareProductListPage>
     with TickerProviderStateMixin {
   late TabController _tabController;
   late PageController _pageController;
@@ -39,8 +39,8 @@ class _CategoryProductListPageState
   @override
   void initState() {
     super.initState();
-    _tabController =
-        TabController(length: DeodorantCategory.values.length, vsync: this);
+    _tabController = TabController(
+        length: Category.smellcareCategoryList.length, vsync: this);
     _pageController = PageController(initialPage: _currentIndex);
     _pageController.addListener(_pageChange);
   }
@@ -55,12 +55,9 @@ class _CategoryProductListPageState
 
   @override
   Widget build(BuildContext context) {
-    final provider =
-        ref.watch(categoryProductsProvider(DeodorantCategory.deodorant.name));
-    // 4개로 나뉭진 카테고리에 따라 탭바랑 상위 title도 다르게 구성하기
     return DefaultLayout(
       leading: const CustomBackButton(),
-      title: const Text('탈취제'),
+      title: const Text(Category.smellcare),
       actions: const [AppbarSearchIcon()],
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +65,7 @@ class _CategoryProductListPageState
           CategoryTabbar(
             ontap: _handleTabChange,
             tabController: _tabController,
-            tabLabelList: const ['탈취제'],
+            tabLabelList: Category.smellcareCategoryList,
           ),
           Expanded(
             child: PageView(
@@ -80,8 +77,9 @@ class _CategoryProductListPageState
                   _tabController.index = index;
                 });
               },
-              children: DeodorantCategory.values
-                  .map((e) => CategoryProductListBody(query: provider))
+              children: Category.smellcareCategoryList
+                  .map((e) => CategoryProductListBody(
+                      query: ref.watch(categoryProductsProvider(e))))
                   .toList(),
             ),
           ),

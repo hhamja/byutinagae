@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'product_model.dart';
+part of 'product_list_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,19 +14,21 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
+ProductListModel _$ProductListModelFromJson(Map<String, dynamic> json) {
   return _ProductListModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProductModel {
-  String get id => throw _privateConstructorUsedError; // 카테고리
-  String get category => throw _privateConstructorUsedError; // 썸네일 이미지 url
+mixin _$ProductListModel {
+  String get id => throw _privateConstructorUsedError; // 대분류  ex. "스킨케어"
+  String get topCategory =>
+      throw _privateConstructorUsedError; // 중분류  ex. "미스트", "보습제"
+  String get middleCategory =>
+      throw _privateConstructorUsedError; // 소분류  ex. "해충방지", "보습", "엉킴방지" 등등
+// required String subCategory,
+// 썸네일 이미지 url
   @ImageUrlConverter()
-  String get thumbnailImage =>
-      throw _privateConstructorUsedError; // 풀 사이즈 이미지 url
-  @ImageUrlConverter()
-  String get fullImage => throw _privateConstructorUsedError; // 브랜드 명
+  String get thumbnailImage => throw _privateConstructorUsedError; // 브랜드 명
   String get brand => throw _privateConstructorUsedError; // 제품 이름
   String get productName => throw _privateConstructorUsedError; // 제품 용량
   String get volume => throw _privateConstructorUsedError; // 가격
@@ -37,21 +39,21 @@ mixin _$ProductModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProductModelCopyWith<ProductModel> get copyWith =>
+  $ProductListModelCopyWith<ProductListModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProductModelCopyWith<$Res> {
-  factory $ProductModelCopyWith(
-          ProductModel value, $Res Function(ProductModel) then) =
-      _$ProductModelCopyWithImpl<$Res, ProductModel>;
+abstract class $ProductListModelCopyWith<$Res> {
+  factory $ProductListModelCopyWith(
+          ProductListModel value, $Res Function(ProductListModel) then) =
+      _$ProductListModelCopyWithImpl<$Res, ProductListModel>;
   @useResult
   $Res call(
       {String id,
-      String category,
+      String topCategory,
+      String middleCategory,
       @ImageUrlConverter() String thumbnailImage,
-      @ImageUrlConverter() String fullImage,
       String brand,
       String productName,
       String volume,
@@ -60,9 +62,9 @@ abstract class $ProductModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
-    implements $ProductModelCopyWith<$Res> {
-  _$ProductModelCopyWithImpl(this._value, this._then);
+class _$ProductListModelCopyWithImpl<$Res, $Val extends ProductListModel>
+    implements $ProductListModelCopyWith<$Res> {
+  _$ProductListModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -73,9 +75,9 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   @override
   $Res call({
     Object? id = null,
-    Object? category = null,
+    Object? topCategory = null,
+    Object? middleCategory = null,
     Object? thumbnailImage = null,
-    Object? fullImage = null,
     Object? brand = null,
     Object? productName = null,
     Object? volume = null,
@@ -87,17 +89,17 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+      topCategory: null == topCategory
+          ? _value.topCategory
+          : topCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      middleCategory: null == middleCategory
+          ? _value.middleCategory
+          : middleCategory // ignore: cast_nullable_to_non_nullable
               as String,
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
           : thumbnailImage // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullImage: null == fullImage
-          ? _value.fullImage
-          : fullImage // ignore: cast_nullable_to_non_nullable
               as String,
       brand: null == brand
           ? _value.brand
@@ -125,7 +127,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
 
 /// @nodoc
 abstract class _$$_ProductListModelCopyWith<$Res>
-    implements $ProductModelCopyWith<$Res> {
+    implements $ProductListModelCopyWith<$Res> {
   factory _$$_ProductListModelCopyWith(
           _$_ProductListModel value, $Res Function(_$_ProductListModel) then) =
       __$$_ProductListModelCopyWithImpl<$Res>;
@@ -133,9 +135,9 @@ abstract class _$$_ProductListModelCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String category,
+      String topCategory,
+      String middleCategory,
       @ImageUrlConverter() String thumbnailImage,
-      @ImageUrlConverter() String fullImage,
       String brand,
       String productName,
       String volume,
@@ -145,7 +147,7 @@ abstract class _$$_ProductListModelCopyWith<$Res>
 
 /// @nodoc
 class __$$_ProductListModelCopyWithImpl<$Res>
-    extends _$ProductModelCopyWithImpl<$Res, _$_ProductListModel>
+    extends _$ProductListModelCopyWithImpl<$Res, _$_ProductListModel>
     implements _$$_ProductListModelCopyWith<$Res> {
   __$$_ProductListModelCopyWithImpl(
       _$_ProductListModel _value, $Res Function(_$_ProductListModel) _then)
@@ -155,9 +157,9 @@ class __$$_ProductListModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? category = null,
+    Object? topCategory = null,
+    Object? middleCategory = null,
     Object? thumbnailImage = null,
-    Object? fullImage = null,
     Object? brand = null,
     Object? productName = null,
     Object? volume = null,
@@ -169,17 +171,17 @@ class __$$_ProductListModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+      topCategory: null == topCategory
+          ? _value.topCategory
+          : topCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      middleCategory: null == middleCategory
+          ? _value.middleCategory
+          : middleCategory // ignore: cast_nullable_to_non_nullable
               as String,
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
           : thumbnailImage // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullImage: null == fullImage
-          ? _value.fullImage
-          : fullImage // ignore: cast_nullable_to_non_nullable
               as String,
       brand: null == brand
           ? _value.brand
@@ -210,9 +212,9 @@ class __$$_ProductListModelCopyWithImpl<$Res>
 class _$_ProductListModel implements _ProductListModel {
   const _$_ProductListModel(
       {required this.id,
-      required this.category,
+      required this.topCategory,
+      required this.middleCategory,
       @ImageUrlConverter() required this.thumbnailImage,
-      @ImageUrlConverter() required this.fullImage,
       required this.brand,
       required this.productName,
       required this.volume,
@@ -224,17 +226,18 @@ class _$_ProductListModel implements _ProductListModel {
 
   @override
   final String id;
-// 카테고리
+// 대분류  ex. "스킨케어"
   @override
-  final String category;
+  final String topCategory;
+// 중분류  ex. "미스트", "보습제"
+  @override
+  final String middleCategory;
+// 소분류  ex. "해충방지", "보습", "엉킴방지" 등등
+// required String subCategory,
 // 썸네일 이미지 url
   @override
   @ImageUrlConverter()
   final String thumbnailImage;
-// 풀 사이즈 이미지 url
-  @override
-  @ImageUrlConverter()
-  final String fullImage;
 // 브랜드 명
   @override
   final String brand;
@@ -255,7 +258,7 @@ class _$_ProductListModel implements _ProductListModel {
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, category: $category, thumbnailImage: $thumbnailImage, fullImage: $fullImage, brand: $brand, productName: $productName, volume: $volume, price: $price, createdAt: $createdAt)';
+    return 'ProductListModel(id: $id, topCategory: $topCategory, middleCategory: $middleCategory, thumbnailImage: $thumbnailImage, brand: $brand, productName: $productName, volume: $volume, price: $price, createdAt: $createdAt)';
   }
 
   @override
@@ -264,12 +267,12 @@ class _$_ProductListModel implements _ProductListModel {
         (other.runtimeType == runtimeType &&
             other is _$_ProductListModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
+            (identical(other.topCategory, topCategory) ||
+                other.topCategory == topCategory) &&
+            (identical(other.middleCategory, middleCategory) ||
+                other.middleCategory == middleCategory) &&
             (identical(other.thumbnailImage, thumbnailImage) ||
                 other.thumbnailImage == thumbnailImage) &&
-            (identical(other.fullImage, fullImage) ||
-                other.fullImage == fullImage) &&
             (identical(other.brand, brand) || other.brand == brand) &&
             (identical(other.productName, productName) ||
                 other.productName == productName) &&
@@ -281,8 +284,8 @@ class _$_ProductListModel implements _ProductListModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, category, thumbnailImage,
-      fullImage, brand, productName, volume, price, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, topCategory, middleCategory,
+      thumbnailImage, brand, productName, volume, price, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -298,12 +301,12 @@ class _$_ProductListModel implements _ProductListModel {
   }
 }
 
-abstract class _ProductListModel implements ProductModel {
+abstract class _ProductListModel implements ProductListModel {
   const factory _ProductListModel(
           {required final String id,
-          required final String category,
+          required final String topCategory,
+          required final String middleCategory,
           @ImageUrlConverter() required final String thumbnailImage,
-          @ImageUrlConverter() required final String fullImage,
           required final String brand,
           required final String productName,
           required final String volume,
@@ -316,14 +319,15 @@ abstract class _ProductListModel implements ProductModel {
 
   @override
   String get id;
-  @override // 카테고리
-  String get category;
-  @override // 썸네일 이미지 url
+  @override // 대분류  ex. "스킨케어"
+  String get topCategory;
+  @override // 중분류  ex. "미스트", "보습제"
+  String get middleCategory;
+  @override // 소분류  ex. "해충방지", "보습", "엉킴방지" 등등
+// required String subCategory,
+// 썸네일 이미지 url
   @ImageUrlConverter()
   String get thumbnailImage;
-  @override // 풀 사이즈 이미지 url
-  @ImageUrlConverter()
-  String get fullImage;
   @override // 브랜드 명
   String get brand;
   @override // 제품 이름

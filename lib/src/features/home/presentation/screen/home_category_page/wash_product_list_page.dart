@@ -1,5 +1,6 @@
 import 'package:byutinagae/src/common/widget/default_layout/default_layout.dart';
 import 'package:byutinagae/src/common/widget/icon_button/custom_back_button.dart';
+import 'package:byutinagae/src/config/constant/category_constant.dart';
 import 'package:byutinagae/src/features/home/presentation/provider/product_list_provider.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/appbar_search_icon.dart';
 import 'package:byutinagae/src/features/home/presentation/widget/product_list_page/category_product_list_body.dart';
@@ -22,8 +23,6 @@ class _CategoryProductListPageState extends ConsumerState<WashProductListPage>
   bool isFetchMore = false;
   int _currentIndex = 0;
 
-  final List<String> tabList = const ['샴푸', '린스'];
-
   _pageChange() {
     setState(() => _currentIndex = _tabController.index);
   }
@@ -39,7 +38,8 @@ class _CategoryProductListPageState extends ConsumerState<WashProductListPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: tabList.length, vsync: this);
+    _tabController =
+        TabController(length: Category.washCategoryList.length, vsync: this);
     _pageController = PageController(initialPage: _currentIndex);
     _pageController.addListener(_pageChange);
   }
@@ -54,13 +54,9 @@ class _CategoryProductListPageState extends ConsumerState<WashProductListPage>
 
   @override
   Widget build(BuildContext context) {
-    final shampooProvider = ref.watch(categoryProductsProvider(tabList[0]));
-    final rinseProvider = ref.watch(categoryProductsProvider(tabList[0]));
-
-    // 4개로 나뉭진 카테고리에 따라 탭바랑 상위 title도 다르게 구성하기
     return DefaultLayout(
       leading: const CustomBackButton(),
-      title: const Text('목욕/워시'),
+      title: const Text(Category.wash),
       actions: const [AppbarSearchIcon()],
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +64,7 @@ class _CategoryProductListPageState extends ConsumerState<WashProductListPage>
           CategoryTabbar(
             ontap: _handleTabChange,
             tabController: _tabController,
-            tabLabelList: tabList,
+            tabLabelList: Category.washCategoryList,
           ),
           Expanded(
             child: PageView(
@@ -80,10 +76,10 @@ class _CategoryProductListPageState extends ConsumerState<WashProductListPage>
                   _tabController.index = index;
                 });
               },
-              children: [
-                CategoryProductListBody(query: shampooProvider),
-                CategoryProductListBody(query: rinseProvider),
-              ],
+              children: Category.washCategoryList
+                  .map((e) => CategoryProductListBody(
+                      query: ref.watch(categoryProductsProvider(e))))
+                  .toList(),
             ),
           ),
         ],
