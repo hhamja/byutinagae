@@ -6,23 +6,23 @@ class EmptyDataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(height: MediaQuery.of(context).size.height * 0.15),
-        SizedBox(
-          width: 300,
-          height: 300,
-          child: Image.asset(
-            './assets/images/empty_data.png',
-          ),
-        ),
-        const SizedBox(height: 34),
-        const Text(
+        // SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+        // SizedBox(
+        //   width: 300,
+        //   height: 300,
+        //   child: Image.asset(
+        //     './assets/images/empty_data.png',
+        //   ),
+        // ),
+        // const SizedBox(height: 34),
+        Text(
           '등록된 제품이 없어요 :(',
           style: TextStyle(
-            color: DARK_GREY_COLOR,
+            // color: DARK_GREY_COLOR,
             fontSize: 18,
           ),
         ),

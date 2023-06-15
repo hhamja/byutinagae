@@ -4,9 +4,6 @@ import 'package:byutinagae/src/features/home/domain/model/ingredient_modificatio
 import 'package:byutinagae/src/features/home/domain/model/product_list_model.dart';
 
 abstract class ProductRepository {
-  // // 카테고리의 전체 제품 받는 페이지네이션 쿼리
-  // queryAllCategoryProducts(TopProductCategory topCategory);
-
   // 특정 중분류 제품 리스트 받는 페이지네이션 쿼리
   queryCategoryProducts(String middleCategory);
 

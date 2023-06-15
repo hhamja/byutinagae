@@ -55,7 +55,6 @@ class _PopularListPageState extends ConsumerState<PopularListPage>
 
   @override
   Widget build(BuildContext context) {
-    // 4개로 나뉭진 카테고리에 따라 탭바랑 상위 title도 다르게 구성하기
     return DefaultTabController(
       length: Category.topCategoryList.length,
       child: DefaultLayout(

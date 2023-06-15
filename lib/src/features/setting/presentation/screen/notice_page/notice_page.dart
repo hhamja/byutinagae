@@ -27,7 +27,7 @@ class AppNoticePage extends StatelessWidget {
               subtitle: Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Text(
-                  '2023. 06. 01',
+                  '2023. 06',
                   style: TextStyle(
                     fontSize: 14,
                     color: GREY_COLOR,

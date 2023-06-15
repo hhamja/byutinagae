@@ -72,7 +72,7 @@ class CompositionItem extends StatelessWidget {
               '$count개',
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
             ),

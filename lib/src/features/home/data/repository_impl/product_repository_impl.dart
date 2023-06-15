@@ -13,35 +13,6 @@ class ProductRepositoryImplement implements ProductRepository {
   final ingredientModificationRef = FirebaseFirestore.instance
       .collection(FirebaseConstant.ingredientModificationRef);
 
-  // // 카레고리의 모든 제품 리스트 받는 페이지네이션 쿼리
-  // @override
-  // queryAllCategoryProducts(TopProductCategory topCategory) {
-  //   List<String> categoryQueryList = [];
-  //   if (topCategory == TopProductCategory.wash) {
-  //     categoryQueryList = [WashCategory.shampoo.name, WashCategory.rinse.name];
-  //   } else if (topCategory == TopProductCategory.skincare) {
-  //     categoryQueryList = [
-  //       SkinCareCategory.mist.name,
-  //       SkinCareCategory.moisturizer.name
-  //     ];
-  //   } else if (topCategory == TopProductCategory.dentalcare) {
-  //     categoryQueryList = [DentalCareCategory.toothpaste.name];
-  //   } else {
-  //     categoryQueryList = [DeodorantCategory.deodorant.name];
-  //   }
-
-  //   return productRef
-  //       .where('topCategory', whereIn: categoryQueryList)
-  //       .withConverter<ProductListModel>(
-  //         fromFirestore: (snapshot, _) {
-  //           final ProductListModel model = ProductListModel.fromJson(
-  //               snapshot.data() as Map<String, dynamic>);
-  //           return model;
-  //         },
-  //         toFirestore: (model, _) => model.toJson(),
-  //       );
-  // }
-
   // 특정 중분류 제품 리스트 받는 페이지네이션 쿼리
   @override
   queryCategoryProducts(String middleCategory) {
@@ -117,7 +88,7 @@ class ProductRepositoryImplement implements ProductRepository {
     final List<ProductListModel> productList = [];
     final QuerySnapshot querySnapshot = await productRef
         .where('topCategory', isEqualTo: topCategory)
-        .where('tag', arrayContains: Category.cleanBeauty)
+        .where('tag', arrayContains: Category.popular)
         .get();
 
     for (var doc in querySnapshot.docs) {
@@ -157,7 +128,10 @@ class ProductRepositoryImplement implements ProductRepository {
   @override
   Future<List<ProductListModel>> fetchPreviewPopularProducts() async {
     final List<ProductListModel> productList = [];
-    final QuerySnapshot querySnapshot = await productRef.limit(6).get();
+    final QuerySnapshot querySnapshot = await productRef
+        .where('tag', arrayContains: Category.popular)
+        .limit(6)
+        .get();
 
     for (var doc in querySnapshot.docs) {
       final ProductListModel model =

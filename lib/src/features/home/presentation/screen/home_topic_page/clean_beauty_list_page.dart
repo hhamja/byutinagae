@@ -23,7 +23,7 @@ class _CleanBeautyListPageState extends ConsumerState<CleanBeautyListPage>
   late TabController _tabController;
   late PageController _pageController;
 
-  int _currentIndex = 0;
+  late int _currentIndex;
 
   Future _pageChange() async {
     setState(() => _currentIndex = _tabController.index);
@@ -40,7 +40,6 @@ class _CleanBeautyListPageState extends ConsumerState<CleanBeautyListPage>
   @override
   void initState() {
     super.initState();
-
     _tabController =
         TabController(length: Category.topCategoryList.length, vsync: this);
     _pageController = PageController(initialPage: _currentIndex);
@@ -57,7 +56,6 @@ class _CleanBeautyListPageState extends ConsumerState<CleanBeautyListPage>
 
   @override
   Widget build(BuildContext context) {
-    // 4개로 나뉭진 카테고리에 따라 탭바랑 상위 title도 다르게 구성하기
     return DefaultTabController(
       length: Category.topCategoryList.length,
       child: DefaultLayout(

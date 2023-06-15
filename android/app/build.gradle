@@ -4,11 +4,11 @@ plugins {
 
 
 // start of Gradle 서명 구성
-// def keystoreProperties = new Properties()
-// def keystorePropertiesFile = rootProject.file('keystore.properties')
-// if (keystorePropertiesFile.exists()) {
-//     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-// }
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('keystore.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
 // end of Gradle 서명 구성
 
 
@@ -72,12 +72,12 @@ android {
     }
 
     signingConfigs {
-        // release {
-        //     keyAlias keystoreProperties['keyAlias']
-        //     keyPassword keystoreProperties['keyPassword']
-        //     storeFile file(keystoreProperties['storeFile'])
-        //     storePassword keystoreProperties['storePassword']
-        // }
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
     }
     buildTypes {
         release {
