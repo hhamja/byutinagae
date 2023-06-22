@@ -23,7 +23,7 @@ class _CleanBeautyListPageState extends ConsumerState<CleanBeautyListPage>
   late TabController _tabController;
   late PageController _pageController;
 
-  late int _currentIndex;
+  int _currentIndex = 0;
 
   Future _pageChange() async {
     setState(() => _currentIndex = _tabController.index);
