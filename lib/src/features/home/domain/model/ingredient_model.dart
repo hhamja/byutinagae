@@ -6,7 +6,6 @@ part 'ingredient_model.g.dart';
 @freezed
 class IngredientModel with _$IngredientModel {
   const factory IngredientModel({
-    required String id,
     // 한글 성분 명
     required String korName,
     // 배합 목적

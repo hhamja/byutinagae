@@ -8,7 +8,6 @@ part of 'ingredient_model.dart';
 
 _$_IngredientModel _$$_IngredientModelFromJson(Map<String, dynamic> json) =>
     _$_IngredientModel(
-      id: json['id'] as String,
       korName: json['korName'] as String,
       blendingPurpose: json['blendingPurpose'] as String,
       ewg: json['ewg'] as String,
@@ -16,7 +15,6 @@ _$_IngredientModel _$$_IngredientModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_IngredientModelToJson(_$_IngredientModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'korName': instance.korName,
       'blendingPurpose': instance.blendingPurpose,
       'ewg': instance.ewg,

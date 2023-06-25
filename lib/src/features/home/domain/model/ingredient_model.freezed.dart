@@ -20,7 +20,7 @@ IngredientModel _$IngredientModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$IngredientModel {
-  String get id => throw _privateConstructorUsedError; // 한글 성분 명
+// 한글 성분 명
   String get korName => throw _privateConstructorUsedError; // 배합 목적
   String get blendingPurpose => throw _privateConstructorUsedError; // EWG 등급
   String get ewg => throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $IngredientModelCopyWith<$Res> {
           IngredientModel value, $Res Function(IngredientModel) then) =
       _$IngredientModelCopyWithImpl<$Res, IngredientModel>;
   @useResult
-  $Res call({String id, String korName, String blendingPurpose, String ewg});
+  $Res call({String korName, String blendingPurpose, String ewg});
 }
 
 /// @nodoc
@@ -53,16 +53,11 @@ class _$IngredientModelCopyWithImpl<$Res, $Val extends IngredientModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? korName = null,
     Object? blendingPurpose = null,
     Object? ewg = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       korName: null == korName
           ? _value.korName
           : korName // ignore: cast_nullable_to_non_nullable
@@ -87,7 +82,7 @@ abstract class _$$_IngredientModelCopyWith<$Res>
       __$$_IngredientModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String korName, String blendingPurpose, String ewg});
+  $Res call({String korName, String blendingPurpose, String ewg});
 }
 
 /// @nodoc
@@ -101,16 +96,11 @@ class __$$_IngredientModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? korName = null,
     Object? blendingPurpose = null,
     Object? ewg = null,
   }) {
     return _then(_$_IngredientModel(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       korName: null == korName
           ? _value.korName
           : korName // ignore: cast_nullable_to_non_nullable
@@ -131,16 +121,13 @@ class __$$_IngredientModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_IngredientModel implements _IngredientModel {
   const _$_IngredientModel(
-      {required this.id,
-      required this.korName,
+      {required this.korName,
       required this.blendingPurpose,
       required this.ewg});
 
   factory _$_IngredientModel.fromJson(Map<String, dynamic> json) =>
       _$$_IngredientModelFromJson(json);
 
-  @override
-  final String id;
 // 한글 성분 명
   @override
   final String korName;
@@ -153,7 +140,7 @@ class _$_IngredientModel implements _IngredientModel {
 
   @override
   String toString() {
-    return 'IngredientModel(id: $id, korName: $korName, blendingPurpose: $blendingPurpose, ewg: $ewg)';
+    return 'IngredientModel(korName: $korName, blendingPurpose: $blendingPurpose, ewg: $ewg)';
   }
 
   @override
@@ -161,7 +148,6 @@ class _$_IngredientModel implements _IngredientModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_IngredientModel &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.korName, korName) || other.korName == korName) &&
             (identical(other.blendingPurpose, blendingPurpose) ||
                 other.blendingPurpose == blendingPurpose) &&
@@ -170,8 +156,7 @@ class _$_IngredientModel implements _IngredientModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, korName, blendingPurpose, ewg);
+  int get hashCode => Object.hash(runtimeType, korName, blendingPurpose, ewg);
 
   @JsonKey(ignore: true)
   @override
@@ -189,16 +174,13 @@ class _$_IngredientModel implements _IngredientModel {
 
 abstract class _IngredientModel implements IngredientModel {
   const factory _IngredientModel(
-      {required final String id,
-      required final String korName,
+      {required final String korName,
       required final String blendingPurpose,
       required final String ewg}) = _$_IngredientModel;
 
   factory _IngredientModel.fromJson(Map<String, dynamic> json) =
       _$_IngredientModel.fromJson;
 
-  @override
-  String get id;
   @override // 한글 성분 명
   String get korName;
   @override // 배합 목적
